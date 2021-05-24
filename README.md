@@ -7,3 +7,4 @@
 - Matheus Alves
 - Guilherme Brandt
 - Bruno Costa
+- Gabriel Carvalho
