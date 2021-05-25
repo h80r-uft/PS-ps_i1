@@ -7,3 +7,4 @@
 - Guilherme Brandt
 - Bruno Costa
 - Gabriel Carvalho
+- Carlos Bueno
