@@ -1,10 +1,20 @@
+// Abaixo serão importados os pacotes relevantes
+// a esta página do código.
 import 'package:flutter/material.dart';
 
+/// Esta é a função principal, responsável por
+/// executar o aplicativo.
 void main() {
   runApp(const MyApp());
 }
 
+/// Controla o fluxo do aplicativo
+/// 
+/// Define o `title` do aplicativo, a `ThemeData`
+/// aplicada neste, e também inicializa o fluxo
+/// de páginas através da `home`
 class MyApp extends StatelessWidget {
+  /// Construtor do controle de fluxo
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -19,9 +29,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
+/// Página principal do aplicativo
+/// 
+/// Possui um título, e um texto central.
 class MyHomePage extends StatelessWidget {
+  /// Título aplicado à `AppBar`
   final String title;
 
+  /// Gera o widget com um [title]
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   @override
