@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 /// Esta é a função principal, responsável por
 /// executar o aplicativo.
+import 'view/widgets/ps_button.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -41,18 +43,18 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// Resolução do dispositivo.
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text(
-              'This app was simplified.',
-            ),
-          ],
+        child: PsButton(
+          size: size,
+          func: () {},
+          text: "Enviar",
         ),
       ),
     );
