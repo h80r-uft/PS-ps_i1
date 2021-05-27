@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'view/widgets/ps_button.dart';
-import 'view/widgets/text_input.dart';
+import 'view/students/widgets/students_item.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,24 +32,16 @@ class Home extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: size.width * 0.05),
-            child: TextInput(
-              size: size,
-              text: "E-mail",
-              controller: textController,
-            ),
+          StudentItem(
+            size: size,
+            fullName: "Heitor Galdino",
+            status: 2,
           ),
-          SizedBox(
-            height: size.height * 0.02,
+          StudentItem(
+            size: size,
+            fullName: "Gabriel Gomes Carvalho",
+            status: 1,
           ),
-          Center(
-            child: PsButton(
-              size: size,
-              func: () {},
-              text: "Enviar",
-            ),
-          )
         ],
       ),
     );
