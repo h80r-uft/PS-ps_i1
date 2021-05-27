@@ -1,11 +1,10 @@
 // Abaixo serão importados os pacotes relevantes
 // a esta página do código.
 import 'package:flutter/material.dart';
+import 'view/widgets/text_input.dart';
 
 /// Esta é a função principal, responsável por
 /// executar o aplicativo.
-import 'view/widgets/ps_button.dart';
-
 void main() {
   runApp(const MyApp());
 }
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Exemplo',),
     );
   }
 }
@@ -35,11 +34,13 @@ class MyApp extends StatelessWidget {
 /// 
 /// Possui um título, e um texto central.
 class MyHomePage extends StatelessWidget {
+  /// Controlador da entrada de texto.
+  final TextEditingController textController = TextEditingController();
   /// Título aplicado à `AppBar`
   final String title;
 
   /// Gera o widget com um [title]
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +52,10 @@ class MyHomePage extends StatelessWidget {
         title: Text(title),
       ),
       body: Center(
-        child: PsButton(
+        child: TextInput(
           size: size,
-          func: () {},
-          text: "Enviar",
+          text: "E-mail",
+          controller: textController,
         ),
       ),
     );
