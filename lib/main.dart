@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'view/widgets/ps_button.dart';
 import 'view/widgets/text_input.dart';
 
 void main() {
@@ -30,12 +30,28 @@ class Home extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.purple,
-      body: Center(
-        child: TextInput(
-          size: size,
-          text: "E-mail",
-          controller: textController,
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+            child: TextInput(
+              size: size,
+              text: "E-mail",
+              controller: textController,
+            ),
+          ),
+          SizedBox(
+            height: size.height * 0.02,
+          ),
+          Center(
+            child: PsButton(
+              size: size,
+              func: () {},
+              text: "Enviar",
+            ),
+          )
+        ],
       ),
     );
   }
