@@ -17,10 +17,10 @@ class PsButton extends StatelessWidget {
     return TextButton(
       onPressed: func,
       child: Container(
-        width: size.width * 0.9,
+        width: size.width * 0.8,
         height: size.height * 0.05,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.white, width: 5),
+          border: Border.all(color: Colors.white, width: 3.5),
           borderRadius: BorderRadius.circular(size.width * 0.07),
         ),
         child: Center(
