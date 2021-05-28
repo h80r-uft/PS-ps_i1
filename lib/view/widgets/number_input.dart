@@ -1,10 +1,11 @@
-// TextInput
+// NumberInput
 import 'package:flutter/material.dart';
 
-class TextInput extends StatelessWidget {
+class NumberInput extends StatelessWidget {
   final TextEditingController controller;
   final String text;
-  const TextInput({
+
+  const NumberInput({
     Key? key,
     required this.size,
     required this.controller,
@@ -22,6 +23,7 @@ class TextInput extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(size.width * 0.015)),
       child: TextField(
+        keyboardType: TextInputType.number,
         controller: controller,
         decoration: InputDecoration(
           border: InputBorder.none,
