@@ -54,17 +54,16 @@ class _MyHomePageState extends State<MyHomePage> {
   firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
 
   void signIn() async {
-    try {
-      firebaseAuth
-          .signInWithEmailAndPassword(
-              email: "yohernandes3@gmail.com", password: "12345678gjgjh")
-          .then((userCredential) => {
-                // Signed in
-                print(userCredential.user)
-              });
-    } catch (e) {
-      print(e);
-    }
+    firebaseAuth
+        .signInWithEmailAndPassword(
+            email: "fel.nzo.rodrigues@planejar.edu.br",
+            password: "banana-nanica-frita")
+        .then((userCredential) {
+      // Signed in
+      print(userCredential.user);
+    }).catchError((error) {
+      print(error);
+    });
   }
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
