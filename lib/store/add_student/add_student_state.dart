@@ -29,7 +29,12 @@ class AddStudentState {
 
   factory AddStudentState.initial() {
     return AddStudentState(
-        name: '', email: '', password: '', confirmPassword: '', saving: false);
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      saving: false,
+    );
   }
 
   AddStudentState copyWith({

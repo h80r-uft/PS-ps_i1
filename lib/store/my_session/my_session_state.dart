@@ -28,9 +28,10 @@ class MySessionState {
     String? loadingError,
   }) {
     return MySessionState(
-        user: user ?? this.user,
-        userError: userError ?? this.userError,
-        loading: loading ?? this.loading,
-        loadingError: loadingError ?? this.loadingError);
+      user: user ?? this.user,
+      userError: userError ?? this.userError,
+      loading: loading ?? this.loading,
+      loadingError: loadingError ?? this.loadingError,
+    );
   }
 }

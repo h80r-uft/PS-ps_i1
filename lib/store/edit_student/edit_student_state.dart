@@ -24,7 +24,11 @@ class EditStudentState {
 
   factory EditStudentState.initial() {
     return EditStudentState(
-        uid: '', firstGrade: 0.0, secondGrade: 0.0, saving: false);
+      uid: '',
+      firstGrade: 0.0,
+      secondGrade: 0.0,
+      saving: false,
+    );
   }
 
   EditStudentState copyWith({
@@ -38,13 +42,14 @@ class EditStudentState {
     String? savingError,
   }) {
     return EditStudentState(
-        uid: uid ?? this.uid,
-        uidError: uidError ?? this.uidError,
-        firstGrade: firstGrade ?? this.firstGrade,
-        firstGradeError: firstGradeError ?? this.firstGradeError,
-        secondGrade: secondGrade ?? this.secondGrade,
-        secondGradeError: secondGradeError ?? this.secondGradeError,
-        saving: saving ?? this.saving,
-        savingError: savingError ?? this.savingError);
+      uid: uid ?? this.uid,
+      uidError: uidError ?? this.uidError,
+      firstGrade: firstGrade ?? this.firstGrade,
+      firstGradeError: firstGradeError ?? this.firstGradeError,
+      secondGrade: secondGrade ?? this.secondGrade,
+      secondGradeError: secondGradeError ?? this.secondGradeError,
+      saving: saving ?? this.saving,
+      savingError: savingError ?? this.savingError,
+    );
   }
 }

@@ -12,7 +12,10 @@ class StudentsState {
   });
 
   factory StudentsState.initial() {
-    return StudentsState(students: <Student>[], loading: false);
+    return StudentsState(
+      students: <Student>[],
+      loading: false,
+    );
   }
 
   StudentsState copyWith({
@@ -21,8 +24,9 @@ class StudentsState {
     String? loadingError,
   }) {
     return StudentsState(
-        students: students ?? this.students,
-        loading: loading ?? this.loading,
-        loadingError: loadingError ?? this.loadingError);
+      students: students ?? this.students,
+      loading: loading ?? this.loading,
+      loadingError: loadingError ?? this.loadingError,
+    );
   }
 }
