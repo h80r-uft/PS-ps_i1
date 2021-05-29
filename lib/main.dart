@@ -51,6 +51,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
+
+  void signIn() async {
+    try {
+      firebaseAuth
+          .signInWithEmailAndPassword(
+              email: "yohernandes3@gmail.com", password: "12345678gjgjh")
+          .then((userCredential) => {
+                // Signed in
+                print(userCredential.user)
+              });
+    } catch (e) {
+      print(e);
+    }
+  }
+
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   VoidCallback? _showPersistentBotton;
   // Controller do TextInput
@@ -115,33 +131,16 @@ class _MyHomePageState extends State<MyHomePage> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      key: _scaffoldKey,
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text("Firebase"),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          StudentItem(
-            size: size,
-            fullName: "Heitor Galdino",
-            status: 2,
-          ),
-          StudentItem(
-            size: size,
-            fullName: "Gabriel Gomes Carvalho",
-            status: 1,
-          ),
-          PsButton(
-              size: size,
-              text: 'Abrir',
-              func: () {
-                setState(() {
-                  name = "Gabriel Gomes Carvalho";
-                });
-                _showPersistentBotton!();
-              })
-        ],
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            signIn();
+          },
+          child: Text("signIn"),
+        ),
       ),
     );
   }
