@@ -2,7 +2,7 @@
 // a esta página do código.
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:ps_i1/view/widgets/number_input.dart';
 import 'package:ps_i1/view/widgets/ps_button.dart';
 import 'view/students/widgets/students_item.dart';
