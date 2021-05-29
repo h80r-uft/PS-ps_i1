@@ -25,13 +25,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // Primary color, used for contrast with background
+        // Definir cor primária, usada para contraste contra o fundo
         primaryColor: Color(0xff731FA1),
 
-        // Scaffold color, used as color for background
+        // Definir cor de Scaffold, usada como cor de fundo
         scaffoldBackgroundColor: Color(0xff291C30),
 
-        //FontFamily, used as standard font for the app
+        //Definir fonte padrão do app
         fontFamily: 'Nunito Regular',
       ),
       home: const MyHomePage(
