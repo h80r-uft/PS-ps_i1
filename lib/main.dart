@@ -25,7 +25,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        // Primary color, used for contrast with background
+        primaryColor: Color(0xff731FA1),
+
+        // Scaffold color, used as color for background
+        scaffoldBackgroundColor: Color(0xff291C30),
+
+        //FontFamily, used as standard font for the app
+        fontFamily: 'Nunito Regular',
       ),
       home: const MyHomePage(
         title: 'Exemplo',
@@ -49,13 +56,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   VoidCallback? _showPersistentBotton;
   // Controller do TextInput
   TextEditingController _nota1 = TextEditingController();
   TextEditingController _nota2 = TextEditingController();
-  // String name seŕa usado pelo Foot 
+  // String name seŕa usado pelo Foot
   String name = "";
   @override
   void initState() {
