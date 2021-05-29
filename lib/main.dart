@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ps_i1/view/widgets/number_input.dart';
 import 'package:ps_i1/view/widgets/ps_button.dart';
 import 'view/students/widgets/students_item.dart';
+import 'package:ps_i1/theme/theme.dart' as theme;
 
 /// Esta é a função principal, responsável por
 /// executar o aplicativo.
@@ -24,16 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        // Definir cor primária, usada para contraste contra o fundo
-        primaryColor: Color(0xff731FA1),
-
-        // Definir cor de Scaffold, usada como cor de fundo
-        scaffoldBackgroundColor: Color(0xff291C30),
-
-        //Definir fonte padrão do app
-        fontFamily: 'Nunito Regular',
-      ),
+      theme: theme.purplePlanning(),
       home: const MyHomePage(
         title: 'Exemplo',
       ),
