@@ -1,6 +1,8 @@
 // Abaixo serão importados os pacotes relevantes
 // a esta página do código.
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ps_i1/view/widgets/number_input.dart';
 import 'package:ps_i1/view/widgets/ps_button.dart';
 import 'view/students/widgets/students_item.dart';
@@ -49,13 +51,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   VoidCallback? _showPersistentBotton;
   // Controller do TextInput
   TextEditingController _nota1 = TextEditingController();
   TextEditingController _nota2 = TextEditingController();
-  // String name seŕa usado pelo Foot 
+  // String name seŕa usado pelo Foot
   String name = "";
   @override
   void initState() {
