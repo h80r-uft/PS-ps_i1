@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ps_i1/view/widgets/number_input.dart';
 import 'package:ps_i1/view/widgets/ps_button.dart';
 import 'view/students/widgets/students_item.dart';
+import 'package:ps_i1/theme/theme.dart' as theme;
 
 /// Esta é a função principal, responsável por
 /// executar o aplicativo.
@@ -24,9 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: theme.purplePlanning(),
       home: const MyHomePage(
         title: 'Exemplo',
       ),
@@ -49,13 +48,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   VoidCallback? _showPersistentBotton;
   // Controller do TextInput
   TextEditingController _nota1 = TextEditingController();
   TextEditingController _nota2 = TextEditingController();
-  // String name seŕa usado pelo Foot 
+  // String name seŕa usado pelo Foot
   String name = "";
   @override
   void initState() {
