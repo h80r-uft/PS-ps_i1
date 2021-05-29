@@ -1,9 +1,11 @@
 // Abaixo serão importados os pacotes relevantes
 // a esta página do código.
 import 'package:flutter/material.dart';
-import 'package:ps_i1/view/widgets/number_input.dart';
-import 'package:ps_i1/view/widgets/ps_button.dart';
-import 'view/students/widgets/students_item.dart';
+
+import 'package:ps_i1/components/input/number_input.dart';
+import 'package:ps_i1/components/ps_button.dart';
+import 'package:ps_i1/components/students_item.dart';
+
 import 'package:ps_i1/theme/theme.dart' as theme;
 
 /// Esta é a função principal, responsável por
