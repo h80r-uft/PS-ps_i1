@@ -3,9 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-import 'package:ps_i1/view/widgets/number_input.dart';
-import 'package:ps_i1/view/widgets/ps_button.dart';
-import 'view/students/widgets/students_item.dart';
+
+import 'package:ps_i1/components/input/number_input.dart';
+import 'package:ps_i1/components/ps_button.dart';
+import 'package:ps_i1/components/students_item.dart';
+
+import 'package:ps_i1/theme/theme.dart' as theme;
 
 /// Esta é a função principal, responsável por
 /// executar o aplicativo.
@@ -26,9 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: theme.purplePlanning(),
       home: const MyHomePage(
         title: 'Exemplo',
       ),
