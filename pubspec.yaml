@@ -38,6 +38,7 @@ dependencies:
   firebase_core: ^1.2.0
   firebase_auth: ^1.2.0
   redux_thunk: ^0.4.0
+  url_strategy: ^0.2.0
 
 dev_dependencies:
   flutter_test:
