@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+/// Botão estilizado
 class PsButton extends StatelessWidget {
+  /// Texto presente no centro do [PsButton].
   final String text;
+
+  /// Função que será executada quando pressionado.
   final dynamic func;
   const PsButton({
     Key? key,
@@ -10,6 +14,8 @@ class PsButton extends StatelessWidget {
     required this.func,
   }) : super(key: key);
 
+  /// Tamanho da tela em que o [PsButton]
+  /// se apresenta.
   final Size size;
 
   @override
