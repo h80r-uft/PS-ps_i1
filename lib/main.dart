@@ -1,6 +1,8 @@
 // Abaixo serão importados os pacotes relevantes
 // a esta página do código.
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
 import 'package:ps_i1/components/input/number_input.dart';
 import 'package:ps_i1/components/ps_button.dart';
