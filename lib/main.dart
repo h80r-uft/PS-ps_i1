@@ -2,9 +2,9 @@
 // a esta página do código.
 import 'package:flutter/material.dart';
 
-import 'package:url_strategy/url_strategy.dart';
+//import 'package:url_strategy/url_strategy.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+//import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
 import 'package:ps_i1/components/input/number_input.dart';
 import 'package:ps_i1/components/ps_button.dart';
@@ -18,7 +18,7 @@ import 'package:ps_i1/theme/theme.dart' as theme;
 /// executar o aplicativo.
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  setPathUrlStrategy();
+//  setPathUrlStrategy();
   runApp(const MyApp());
 }
 
@@ -156,6 +156,14 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          OutlinedButton(
+            onPressed: () {
+              print('oi');
+            },
+            child: const Text(
+              'Abrir',
+            ),
+          ),
           StudentItem(
             size: size,
             fullName: "Heitor Galdino",
