@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-
+import 'package:ps_i1/pages/login.dart';
 import 'package:ps_i1/components/input/number_input.dart';
 import 'package:ps_i1/components/ps_button.dart';
 import 'package:ps_i1/components/students_item.dart';
@@ -28,12 +28,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: theme.purplePlanning(),
-      home: const MyHomePage(
-        title: 'Exemplo',
-      ),
-    );
+        title: 'Flutter Demo',
+        theme: theme.purplePlanning(),
+        home: LoginPage());
   }
 }
 
@@ -133,14 +130,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Firebase"),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            signIn();
-          },
-          child: Text("signIn"),
-        ),
       ),
     );
   }
