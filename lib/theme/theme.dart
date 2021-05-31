@@ -18,6 +18,11 @@ ThemeData purplePlanning() {
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: primaryColor,
     ),
+    textTheme: const TextTheme(
+      subtitle1: TextStyle(
+        color: Colors.white,
+      ),
+    ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         shape: const StadiumBorder(),
@@ -44,6 +49,10 @@ ThemeData purplePlanning() {
       hintStyle: TextStyle(
         color: Colors.grey.shade600,
         fontSize: 12.0,
+      ),
+      labelStyle: const TextStyle(
+        color: Colors.white,
+        fontSize: 18.0,
       ),
     ),
   );
