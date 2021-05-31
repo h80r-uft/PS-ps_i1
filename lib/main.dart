@@ -2,17 +2,45 @@
 // a esta página do código.
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:ps_i1/pages/login.dart';
+
 import 'package:ps_i1/components/input/number_input.dart';
 import 'package:ps_i1/components/ps_button.dart';
-import 'package:ps_i1/components/students_item.dart';
 
+import 'package:ps_i1/pages/pages.dart' as pages;
 import 'package:ps_i1/theme/theme.dart' as theme;
 
 /// Esta é a função principal, responsável por
 /// executar o aplicativo.
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: _initialization,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return pages.Error(snapshot);
+        }
+        if (snapshot.connectionState == ConnectionState.done) {
+          return const MyNewApp();
+        }
+        return pages.Loading(snapshot);
+      },
+    );
+  }
 }
 
 /// Controla o fluxo do aplicativo
@@ -20,16 +48,17 @@ void main() {
 /// Define o `title` do aplicativo, a `ThemeData`
 /// aplicada neste, e também inicializa o fluxo
 /// de páginas através da `home`
-class MyApp extends StatelessWidget {
+class MyNewApp extends StatelessWidget {
   /// Construtor do controle de fluxo
-  const MyApp({Key? key}) : super(key: key);
+  const MyNewApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: theme.purplePlanning(),
-        home: LoginPage());
+      title: 'Flutter Demo',
+      theme: theme.purplePlanning(),
+      home: pages.Login(),
+    );
   }
 }
 
@@ -108,9 +137,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    /// Resolução do dispositivo.
-    final size = MediaQuery.of(context).size;
-
-    return Scaffold();
+    return const Scaffold();
   }
 }
