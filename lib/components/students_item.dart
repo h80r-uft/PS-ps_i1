@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
 
+/// Representação visual de um estudante.
 class StudentItem extends StatelessWidget {
+  /// Nome completo do estudante.
   final String fullName;
+
+  /// Estado das notas do estudante.
+  ///
+  /// Define a cor do 'avatar' do estudante.
+  /// ### Descrição
+  /// - `0`: Nenhuma nota presente:
+  ///     - Vermelho
+  /// - `1`: Uma nota presente
+  ///     - Amarelo
+  /// - `2`: Duas notas presentes
+  ///     - Verde
   final int status;
+
   const StudentItem({
     Key? key,
     required this.size,
@@ -10,8 +24,14 @@ class StudentItem extends StatelessWidget {
     required this.status,
   }) : super(key: key);
 
+  /// Tamanho da tela em que o [StudentItem]
+  /// se apresenta.
   final Size size;
-  // funcao que retorna as iniciais
+
+  /// Obtém as iniciais do estudante.
+  ///
+  /// Através da divisão do [fullName]
+  /// retorna as iniciais do estudante.
   initials() {
     List<String> name = fullName.split(" ");
     String initials = '';

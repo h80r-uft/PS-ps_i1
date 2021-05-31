@@ -1,8 +1,14 @@
 // NumberInput
 import 'package:flutter/material.dart';
 
+/// Widget para entrada de valores numéricos
 class NumberInput extends StatelessWidget {
+  /// Controlador que mantém o texto atual
+  /// presente no [NumberInput].
   final TextEditingController controller;
+
+  /// Frase ou palavra que indicam o tipo
+  /// de entrada esperado.
   final String text;
 
   const NumberInput({
@@ -12,6 +18,8 @@ class NumberInput extends StatelessWidget {
     required this.text,
   }) : super(key: key);
 
+  /// Tamanho da tela em que o [NumberInput]
+  /// se apresenta.
   final Size size;
 
   @override

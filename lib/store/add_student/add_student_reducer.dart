@@ -1,6 +1,17 @@
 import 'package:ps_i1/store/add_student/add_student_actions.dart';
 import 'package:ps_i1/store/add_student/add_student_state.dart';
 
+/// Executa a [action] atribuída gerando um
+/// novo estado partindo do [state] original.
+///
+/// ### Possíveis ações
+///
+/// - [NameChange]
+/// - [EmailChange]
+/// - [PasswordChange]
+/// - [ConfirmPasswordChange]
+/// - [ClearFormData]
+/// - [Saving]
 AddStudentState addStudentReducer(AddStudentState state, dynamic action) {
   if (action is NameChange) {
     return state.copyWith(
