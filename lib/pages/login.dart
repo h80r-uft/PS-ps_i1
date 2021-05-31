@@ -50,14 +50,16 @@ class LoginPage extends StatelessWidget {
 
   TextFormField textFormFieldLogin() {
     return TextFormField(
-        controller: _tedLogin,
-        validator: _validaLogin,
-        keyboardType: TextInputType.text,
-        style: TextStyle(color: Colors.white),
-        decoration: InputDecoration(
-            labelText: "Login",
-            labelStyle: TextStyle(fontSize: 20.0, color: Colors.white),
-            hintText: "Informe a senha"));
+      controller: _tedLogin,
+      validator: _validaLogin,
+      keyboardType: TextInputType.text,
+      style: TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+        labelText: "Login",
+        labelStyle: TextStyle(fontSize: 20.0, color: Colors.white),
+        hintText: "Informe o login",
+      ),
+    );
   }
 
   Container containerButton(BuildContext context) {
@@ -114,22 +116,27 @@ class LoginPage extends StatelessWidget {
               ]);
         },
       );
-    } else
-      signIn(login, senha);
+    } else {
+      signIn(
+        context,
+        login,
+        senha,
+      );
+    }
   }
 }
 
 /// A função signIn loga um(a) usuário(a) no sistema, com base nos dados do Firestone
-void signIn(login, senha) async {
+void signIn(context, login, senha) async {
   firebaseAuth
       .signInWithEmailAndPassword(email: login, password: senha)
       .then((userCredential) {
     // Signed in
-    showAlertDialog("LOGADO!", login);
+    showAlertDialog(context, "LOGADO!", login);
     print(userCredential.user);
     print(login + " está logade!");
   }).catchError((error) {
-    showAlertDialog("NÃO LOGADO!", "error");
+    showAlertDialog(context, "NÃO LOGADO!", "error");
     print(error);
     print("O login não foi concluído :(");
   });
@@ -137,14 +144,32 @@ void signIn(login, senha) async {
 
 // A função abaixo não está funcionado por razões desconhecidas!
 // A verificação do login está sendo feita através de msgs no terminal
-showAlertDialog(title_text, content_text) {
-  Widget okButton = TextButton(onPressed: () {}, child: Text("OK"));
+showAlertDialog(context, title_text, content_text) {
+  Widget okButton = TextButton(
+    onPressed: () {
+      Navigator.pop(context);
+    },
+    child: const Text(
+      "OK",
+    ),
+  );
 
   AlertDialog alerta = AlertDialog(
-    title: Text(title_text),
-    content: Text(content_text),
+    title: Text(
+      title_text,
+    ),
+    content: Text(
+      content_text,
+    ),
     actions: [
       okButton,
     ],
+  );
+
+  showDialog(
+    context: context,
+    builder: (context) {
+      return alerta;
+    },
   );
 }
