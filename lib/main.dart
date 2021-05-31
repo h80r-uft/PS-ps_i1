@@ -2,7 +2,6 @@
 // a esta página do código.
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:ps_i1/pages/login.dart';
 import 'package:ps_i1/components/input/number_input.dart';
 import 'package:ps_i1/components/ps_button.dart';
@@ -49,21 +48,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
-
-  void signIn() async {
-    firebaseAuth
-        .signInWithEmailAndPassword(
-            email: "fel.nzo.rodrigues@planejar.edu.br",
-            password: "banana-nanica-frita")
-        .then((userCredential) {
-      // Signed in
-      print(userCredential.user);
-    }).catchError((error) {
-      print(error);
-    });
-  }
-
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   VoidCallback? _showPersistentBotton;
   // Controller do TextInput
@@ -127,10 +111,6 @@ class _MyHomePageState extends State<MyHomePage> {
     /// Resolução do dispositivo.
     final size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Firebase"),
-      ),
-    );
+    return Scaffold();
   }
 }

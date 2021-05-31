@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+
+firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
 
 class LoginPage extends StatelessWidget {
   final _tedLogin = TextEditingController();
@@ -111,6 +114,37 @@ class LoginPage extends StatelessWidget {
               ]);
         },
       );
-    }
+    } else
+      signIn(login, senha);
   }
+}
+
+/// A função signIn loga um(a) usuário(a) no sistema, com base nos dados do Firestone
+void signIn(login, senha) async {
+  firebaseAuth
+      .signInWithEmailAndPassword(email: login, password: senha)
+      .then((userCredential) {
+    // Signed in
+    showAlertDialog("LOGADO!", login);
+    print(userCredential.user);
+    print(login + " está logade!");
+  }).catchError((error) {
+    showAlertDialog("NÃO LOGADO!", "error");
+    print(error);
+    print("O login não foi concluído :(");
+  });
+}
+
+// A função abaixo não está funcionado por razões desconhecidas!
+// A verificação do login está sendo feita através de msgs no terminal
+showAlertDialog(title_text, content_text) {
+  Widget okButton = TextButton(onPressed: () {}, child: Text("OK"));
+
+  AlertDialog alerta = AlertDialog(
+    title: Text(title_text),
+    content: Text(content_text),
+    actions: [
+      okButton,
+    ],
+  );
 }
