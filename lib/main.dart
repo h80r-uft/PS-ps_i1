@@ -1,24 +1,18 @@
 // Abaixo serão importados os pacotes relevantes
 // a esta página do código.
 import 'package:flutter/material.dart';
-
-//import 'package:url_strategy/url_strategy.dart';
 import 'package:firebase_core/firebase_core.dart';
-//import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
 import 'package:ps_i1/components/input/number_input.dart';
 import 'package:ps_i1/components/ps_button.dart';
-import 'package:ps_i1/components/students_item.dart';
 
 import 'package:ps_i1/pages/pages.dart' as pages;
-
 import 'package:ps_i1/theme/theme.dart' as theme;
 
 /// Esta é a função principal, responsável por
 /// executar o aplicativo.
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-//  setPathUrlStrategy();
   runApp(const MyApp());
 }
 
@@ -63,9 +57,7 @@ class MyNewApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: theme.purplePlanning(),
-      home: const MyHomePage(
-        title: 'Exemplo',
-      ),
+      home: pages.Login(),
     );
   }
 }
@@ -145,46 +137,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    /// Resolução do dispositivo.
-    final size = MediaQuery.of(context).size;
-
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          OutlinedButton(
-            onPressed: () {
-              print('oi');
-            },
-            child: const Text(
-              'Abrir',
-            ),
-          ),
-          StudentItem(
-            size: size,
-            fullName: "Heitor Galdino",
-            status: 2,
-          ),
-          StudentItem(
-            size: size,
-            fullName: "Gabriel Gomes Carvalho",
-            status: 1,
-          ),
-          PsButton(
-              size: size,
-              text: 'Abrir',
-              func: () {
-                setState(() {
-                  name = "Gabriel Gomes Carvalho";
-                });
-                _showPersistentBotton!();
-              })
-        ],
-      ),
-    );
+    return const Scaffold();
   }
 }
