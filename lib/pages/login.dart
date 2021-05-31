@@ -134,11 +134,8 @@ void signIn(context, login, senha) async {
     // Signed in
     showAlertDialog(context, "LOGADO!", login);
     print(userCredential.user);
-    print(login + " está logade!");
   }).catchError((error) {
-    showAlertDialog(context, "NÃO LOGADO!", "error");
-    print(error);
-    print("O login não foi concluído :(");
+    showAlertDialog(context, "NÃO LOGADO!", error.message);
   });
 }
 
