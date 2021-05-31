@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
 
 class Login extends StatelessWidget {
+  Login({Key? key}) : super(key: key);
+
   final _tedLogin = TextEditingController();
   final _tedSenha = TextEditingController();
 
@@ -13,10 +15,10 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Fazer o Login"),
+        title: const Text("Fazer o Login"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: _body(context),
       ),
     );
@@ -53,10 +55,8 @@ class Login extends StatelessWidget {
       controller: _tedLogin,
       validator: _validaLogin,
       keyboardType: TextInputType.text,
-      style: TextStyle(color: Colors.white),
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: "Login",
-        labelStyle: TextStyle(fontSize: 20.0, color: Colors.white),
         hintText: "Informe o login",
       ),
     );
@@ -65,11 +65,11 @@ class Login extends StatelessWidget {
   Container containerButton(BuildContext context) {
     return Container(
       height: 40.0,
-      margin: EdgeInsets.only(top: 10.0),
-      child: RaisedButton(
-        color: Colors.deepPurple,
-        child: Text("Login",
-            style: TextStyle(color: Colors.white, fontSize: 20.0)),
+      margin: const EdgeInsets.only(top: 10.0),
+      child: OutlinedButton(
+        child: const Text(
+          "Login",
+        ),
         onPressed: () {
           _onClickLogin(context);
         },
@@ -79,15 +79,15 @@ class Login extends StatelessWidget {
 
   TextFormField textFormFieldSenha() {
     return TextFormField(
-        controller: _tedSenha,
-        validator: _validaSenha,
-        obscureText: true,
-        keyboardType: TextInputType.text,
-        style: TextStyle(color: Colors.white),
-        decoration: InputDecoration(
-            labelText: "Senha",
-            labelStyle: TextStyle(fontSize: 20.0, color: Colors.white),
-            hintText: "Informe a senha"));
+      controller: _tedSenha,
+      validator: _validaSenha,
+      obscureText: true,
+      keyboardType: TextInputType.text,
+      decoration: const InputDecoration(
+        labelText: "Senha",
+        hintText: "Informe a senha",
+      ),
+    );
   }
 
   _onClickLogin(BuildContext context) {
@@ -105,15 +105,17 @@ class Login extends StatelessWidget {
         context: context,
         builder: (context) {
           return AlertDialog(
-              title: Text("Erro"),
-              content: Text("Login e/ou Senha invalido(s)"),
-              actions: <Widget>[
-                FlatButton(
-                    child: Text("OK"),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    })
-              ]);
+            title: const Text("Erro"),
+            content: const Text("Login e/ou Senha invalido(s)"),
+            actions: <Widget>[
+              TextButton(
+                child: const Text("OK"),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          );
         },
       );
     } else {
@@ -127,7 +129,7 @@ class Login extends StatelessWidget {
 }
 
 /// A função signIn loga um(a) usuário(a) no sistema, com base nos dados do Firestone
-void signIn(context, login, senha) async {
+void signIn(BuildContext context, login, senha) async {
   firebaseAuth
       .signInWithEmailAndPassword(email: login, password: senha)
       .then((userCredential) {
@@ -144,7 +146,7 @@ void signIn(context, login, senha) async {
 
 // A função abaixo não está funcionado por razões desconhecidas!
 // A verificação do login está sendo feita através de msgs no terminal
-showAlertDialog(context, title_text, content_text) {
+showAlertDialog(BuildContext context, titleText, contentText) {
   Widget okButton = TextButton(
     onPressed: () {
       Navigator.pop(context);
@@ -156,10 +158,10 @@ showAlertDialog(context, title_text, content_text) {
 
   AlertDialog alerta = AlertDialog(
     title: Text(
-      title_text,
+      titleText,
     ),
     content: Text(
-      content_text,
+      contentText,
     ),
     actions: [
       okButton,
