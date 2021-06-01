@@ -18,7 +18,7 @@ final userCollection = FirebaseFirestore.instance.collection("users");
 
 User fromDocumentSnapshot(DocumentSnapshot doc) {
   final data = doc.data();
-  if (data == null || !(data is Map)) throw "DocumentSnapshot data error!";
+  if (data == null || data is! Map) throw "DocumentSnapshot data error!";
   return User(
     uid: doc.id,
     name: data['name'],

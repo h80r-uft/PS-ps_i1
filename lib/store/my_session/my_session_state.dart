@@ -2,26 +2,22 @@ import 'package:ps_i1/models/user.dart';
 
 /// Estado atual da sessão.
 class MySessionState {
-<<<<<<< HEAD
   final String? uid;
   final String? uidError;
 
-=======
   /// Usuário logado.
->>>>>>> develop
   final User? user;
 
   /// Erro obtido ao tentar
   /// fazer login.
   final String? userError;
 
-<<<<<<< HEAD
   final String? name;
   final String? nameError;
 
   final String? isTeacher;
   final String? isTeacherError;
-=======
+
   /// Email do usuário que
   /// deseja fazer login.
   ///
@@ -49,7 +45,6 @@ class MySessionState {
   /// armazenar temporariamente
   /// a senha.
   final String? passwordError;
->>>>>>> develop
 
   /// Estado de carregamento
   /// do login.
