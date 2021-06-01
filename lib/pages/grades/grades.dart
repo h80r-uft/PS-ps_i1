@@ -6,9 +6,9 @@ class Grades extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const tempAluno = 'Brenda';
-    const tempNota1 = 4.0;
+    const tempNota1 = 4.01;
     const tempNota1Cor = Colors.red;
-    const tempNota2 = 10.0;
+    const tempNota2 = 8.99;
     const tempNota2Cor = Colors.green;
     const tempAverage = (tempNota1 + tempNota2) / 2;
     const tempAverageColor = Colors.yellow;
