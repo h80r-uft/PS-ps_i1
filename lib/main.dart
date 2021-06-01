@@ -57,7 +57,7 @@ class MyNewApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: theme.purplePlanning(),
-      home: pages.Login(),
+      home: const pages.Grades(),
     );
   }
 }
