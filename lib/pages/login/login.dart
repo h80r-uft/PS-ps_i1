@@ -1,130 +1,171 @@
 import 'package:flutter/material.dart';
+import 'package:ps_i1/pages/responsive.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
 firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
 
-class Login extends StatelessWidget {
-  Login({Key? key}) : super(key: key);
+class Login extends StatefulWidget {
+  @override
+  _LoginState createState() => _LoginState();
+}
 
-  final _tedLogin = TextEditingController();
-  final _tedSenha = TextEditingController();
-
+class _LoginState extends State<Login> {
+  /// GlobalKey do formulario
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  /// variavel usada para obscurecer ou não a entranda do input password
+  bool _showPassword = false;
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Fazer o Login"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: _body(context),
-      ),
-    );
-  }
+        appBar: AppBar(
+          title: Text(
+            'Fazer Login',
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
+        ),
+        body: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              buildEmailField(controller: emailController, size: size),
+              buildPasswordField(controller: passwordController, size: size),
+              Container(
+                margin: EdgeInsets.only(top: 8),
+                width: (Responsive.isMobile(context)) ? size.width * 0.8 : 400,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(),
+                    TextButton(
+                      onPressed: () {},
+                      child: Container(
+                        width: (Responsive.isMobile(context))
+                            ? size.width * 0.3
+                            : 150,
+                        height: 20,
+                        decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Center(
+                          child: Text(
+                            'Esqueci a senha',
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Container(
+                width: (Responsive.isMobile(context)) ? size.width * 0.8 : 400,
+                height: 40,
+                margin: EdgeInsets.only(top: 20),
+                child: OutlinedButton(
+                  onPressed: () {
+                    String login = emailController.text;
+                    String password = passwordController.text;
 
-  String? _validaLogin(String? text) {
-    if (text!.isEmpty) {
-      return "Informe o login";
-    }
-    return null;
-  }
-
-  String? _validaSenha(String? text) {
-    if (text!.isEmpty) {
-      return "Informe a senha";
-    }
-    return null;
-  }
-
-  _body(BuildContext context) {
-    return Form(
-        key: _formKey,
-        child: ListView(
-          children: <Widget>[
-            textFormFieldLogin(),
-            textFormFieldSenha(),
-            containerButton(context)
-          ],
+                    /// valida se a entrada é um email valido
+                    bool emailValid = RegExp(
+                            r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+                        .hasMatch(login);
+                    if (login.isNotEmpty && password.isNotEmpty && emailValid) {
+                      signIn(context, login, password);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          backgroundColor: Theme.of(context).primaryColor,
+                          content: Text('Email ou senha invalidos')));
+                    }
+                  },
+                  child: Text(
+                    'Entrar',
+                  ),
+                ),
+              )
+            ],
+          ),
         ));
   }
 
-  TextFormField textFormFieldLogin() {
-    return TextFormField(
-      controller: _tedLogin,
-      validator: _validaLogin,
-      keyboardType: TextInputType.text,
-      decoration: const InputDecoration(
-        labelText: "Login",
-        hintText: "Informe o login",
-      ),
-    );
-  }
-
-  Container containerButton(BuildContext context) {
-    return Container(
-      height: 40.0,
-      margin: const EdgeInsets.only(top: 10.0),
-      child: OutlinedButton(
-        child: const Text(
-          "Login",
+  Center buildEmailField(
+      {required TextEditingController controller, required Size size}) {
+    return Center(
+      child: Container(
+        margin: EdgeInsets.all(20),
+        alignment: Alignment.center,
+        width: (Responsive.isMobile(context)) ? size.width * 0.8 : 400,
+        height: 35,
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(8)),
+        child: TextFormField(
+          controller: controller,
+          keyboardType: TextInputType.emailAddress,
+          style: TextStyle(color: Colors.black, fontSize: 18),
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.only(left: 5, bottom: 10),
+            border: InputBorder.none,
+            hintText: 'E-mail',
+            hintStyle:
+                TextStyle(color: Colors.black.withOpacity(0.5), fontSize: 18),
+          ),
         ),
-        onPressed: () {
-          _onClickLogin(context);
-        },
       ),
     );
   }
 
-  TextFormField textFormFieldSenha() {
-    return TextFormField(
-      controller: _tedSenha,
-      validator: _validaSenha,
-      obscureText: true,
-      keyboardType: TextInputType.text,
-      decoration: const InputDecoration(
-        labelText: "Senha",
-        hintText: "Informe a senha",
-      ),
-    );
-  }
+  Center buildPasswordField(
+      {required TextEditingController controller, required Size size}) {
+    return Center(
+      child: Container(
+        alignment: Alignment.center,
+        width: (Responsive.isMobile(context)) ? size.width * 0.8 : 400,
+        height: 35,
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(8)),
+        child: TextFormField(
+          controller: controller,
 
-  _onClickLogin(BuildContext context) {
-    final login = _tedLogin.text;
-    final senha = _tedSenha.text;
+          /// responsavel por obscurecer ou exibir a senha digitada
+          obscureText: !_showPassword,
+          keyboardType: TextInputType.text,
+          style: TextStyle(color: Colors.black, fontSize: 18),
+          decoration: InputDecoration(
+              contentPadding: EdgeInsets.only(left: 5, top: 2.5),
+              border: InputBorder.none,
+              hintText: 'Senha',
+              hintStyle:
+                  TextStyle(color: Colors.black.withOpacity(0.5), fontSize: 18),
 
-    print("Login: $login , Senha: $senha ");
-
-    if (!_formKey.currentState!.validate()) {
-      return;
-    }
-
-    if (login.isEmpty || senha.isEmpty) {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text("Erro"),
-            content: const Text("Login e/ou Senha invalido(s)"),
-            actions: <Widget>[
-              TextButton(
-                child: const Text("OK"),
-                onPressed: () {
-                  Navigator.pop(context);
+              /// Botão usado para mudar o estado da variavel _showPassword
+              suffixIcon: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    (_showPassword == false)
+                        ? _showPassword = true
+                        : _showPassword = false;
+                  });
                 },
-              )
-            ],
-          );
-        },
-      );
-    } else {
-      signIn(
-        context,
-        login,
-        senha,
-      );
-    }
+                child: Icon(
+                    (_showPassword) ? Icons.visibility_off : Icons.visibility,
+                    size: 18,
+                    color: Colors.black.withOpacity(0.5)),
+              )),
+        ),
+      ),
+    );
   }
 }
 
