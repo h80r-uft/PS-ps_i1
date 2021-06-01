@@ -1,10 +1,9 @@
 import 'package:ps_i1/models/user.dart';
 import 'package:redux/redux.dart';
-
 import '../../models/user.dart';
 import '../../models/user_service.dart';
 import '../app_state.dart';
-//import '../../middlewares/navigation/nagivation_actions.dart';
+import 'package:ps_i1/middlewares/navigation/navigation_actions.dart';
 
 /// Ação de atualização no email.
 ///
@@ -69,15 +68,17 @@ void Function(Store<AppState>) saveThunk(UserService userService) {
       uid: store.state.mySessionState.uid,
       name: store.state.mySessionState.name,
       isTeacher: store.state.mySessionState.isTeacher,
+      // email: store.state.mySessionState.email,
+      // password: store.state.mySessionState.password,
     );
-    userService.login(email, senha).then((newNote) {
+    userService.login("email", "senha").then((newNote) {
       store.dispatch(ClearFormData());
-      store.dispatch(Saving(saving: false));
+      store.dispatch(Loading(loading: false));
       store.dispatch(NavigateBack());
     }).onError((error, stackTrace) {
-      store.dispatch(Saving(
-        saving: false,
-        savingError: error.toString(),
+      store.dispatch(Loading(
+        loading: false,
+        loadingError: error.toString(),
       ));
     });
   };

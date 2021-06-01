@@ -1,7 +1,10 @@
 import 'package:ps_i1/models/user.dart';
+import 'package:ps_i1/store/add_student/add_student_actions.dart';
 
 /// Estado atual da sessão.
 class MySessionState {
+  /// Numero dentificador
+  /// do usuario
   final String? uid;
   final String? uidError;
 
@@ -12,9 +15,11 @@ class MySessionState {
   /// fazer login.
   final String? userError;
 
+  /// Nome completo do usuário.
   final String? name;
   final String? nameError;
 
+  /// Classificador de tipo de usuário
   final String? isTeacher;
   final String? isTeacherError;
 
@@ -63,6 +68,10 @@ class MySessionState {
     this.userError,
     required this.name,
     this.nameError,
+    required this.email,
+    this.emailError,
+    required this.password,
+    this.passwordError,
     required this.isTeacher,
     this.isTeacherError,
     required this.loading,
@@ -77,6 +86,8 @@ class MySessionState {
       name: null,
       user: null,
       isTeacher: null,
+      email: null,
+      password: null,
       loading: false,
     );
   }
@@ -92,6 +103,10 @@ class MySessionState {
     String? userError,
     String? name,
     String? nameError,
+    String? email,
+    String? emailError,
+    String? password,
+    String? passwordError,
     String? isTeacher,
     String? isTeacherError,
     bool? loading,
@@ -104,6 +119,10 @@ class MySessionState {
       userError: userError ?? this.userError,
       name: name ?? this.name,
       nameError: nameError ?? this.nameError,
+      email: email ?? this.email,
+      emailError: emailError ?? this.emailError,
+      password: password ?? this.password,
+      passwordError: passwordError ?? this.passwordError,
       isTeacher: isTeacher ?? this.isTeacher,
       isTeacherError: isTeacherError ?? this.isTeacherError,
       loading: loading ?? this.loading,
