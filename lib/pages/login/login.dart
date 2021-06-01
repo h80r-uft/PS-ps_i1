@@ -32,10 +32,30 @@ class _LoginState extends State<Login> {
               margin: const EdgeInsets.only(top: 8),
               width: (Responsive.isMobile(context)) ? size.width * 0.8 : 400,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  const SizedBox(),
-                  TextButton(
+                  SizedBox(
+                    width: (Responsive.isMobile(context))
+                        ? size.width * 0.35
+                        : 135,
+                    height: 20,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        primary: Colors.grey,
+                      ),
+                      child: const Text(
+                        'Esqueci a senha',
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                  /*TextButton(
                     onPressed: () {},
                     child: Container(
                       width: (Responsive.isMobile(context))
@@ -54,7 +74,7 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                     ),
-                  )
+                  )*/
                 ],
               ),
             ),
@@ -141,15 +161,15 @@ class _LoginState extends State<Login> {
             ),
 
             /// Botão usado para mudar o estado da variavel _showPassword
-            suffixIcon: GestureDetector(
-              onTap: () {
+            suffixIcon: IconButton(
+              onPressed: () {
                 setState(() {
                   (_showPassword == false)
                       ? _showPassword = true
                       : _showPassword = false;
                 });
               },
-              child: Icon(
+              icon: Icon(
                 (_showPassword) ? Icons.visibility_off : Icons.visibility,
                 size: 18,
                 color: Colors.black.withOpacity(0.5),
