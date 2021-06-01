@@ -5,25 +5,74 @@ firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
 
 // Classe de widget que compõe o corpo da página de criar user
 class NewUser extends StatelessWidget {
-  NewUser({Key? key}) : super(key: key);
-
-  final _tedNome = TextEditingController();
-  final _tedMail = TextEditingController();
-  final _tedSenha = TextEditingController();
-  final _tedSenha2 = TextEditingController();
-
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  const NewUser({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Cadastrar novo usuário"),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: _body(context),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Cadastrar novo usuário"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          child: ListView(
+            children: <Widget>[
+              TextFormField(
+                validator: _validaNome,
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                  labelText: "Nome",
+                  hintText: "Informe o nome",
+                ),
+              ),
+              TextFormField(
+                validator: _validaMail,
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                  labelText: "E-Mail",
+                  hintText: "Informe o e-mail",
+                ),
+              ),
+              TextFormField(
+                validator: _validaSenha,
+                obscureText: true,
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                  labelText: "Senha",
+                  hintText: "Informe a senha",
+                ),
+              ),
+              TextFormField(
+                validator: _validaSenha2,
+                obscureText: true,
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                  hintText: "Confirme a senha",
+                ),
+              ),
+              Container(
+                height: 40.0,
+                margin: const EdgeInsets.only(top: 10.0),
+                child: OutlinedButton(
+                  child: const Text(
+                    "Criar cadastro",
+                  ),
+                  onPressed: () {},
+                ),
+              ),
+              Container(
+                height: 40.0,
+                margin: const EdgeInsets.only(top: 10.0),
+                child: OutlinedButton(
+                  child: const Text(
+                    "Lista de alunos",
+                  ),
+                  onPressed: () {},
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -58,100 +107,7 @@ class NewUser extends StatelessWidget {
     return null;
   }
 
-  _body(BuildContext context) {
-    return Form(
-        key: _formKey,
-        child: ListView(
-          children: <Widget>[
-            textFormFieldNome(),
-            textFormFieldMail(),
-            textFormFieldSenha(),
-            textFormFieldSenha2(),
-            createUser(context),
-            userList(context)
-          ],
-        ));
-  }
-
-  TextFormField textFormFieldNome() {
-    return TextFormField(
-      controller: _tedNome,
-      validator: _validaNome,
-      keyboardType: TextInputType.text,
-      decoration: const InputDecoration(
-        labelText: "Nome",
-        hintText: "Informe o nome",
-      ),
-    );
-  }
-
-  TextFormField textFormFieldMail() {
-    return TextFormField(
-      controller: _tedMail,
-      validator: _validaMail,
-      keyboardType: TextInputType.text,
-      decoration: const InputDecoration(
-        labelText: "E-Mail",
-        hintText: "Informe o e-mail",
-      ),
-    );
-  }
-
-  Container createUser(BuildContext context) {
-    return Container(
-      height: 40.0,
-      margin: const EdgeInsets.only(top: 10.0),
-      child: OutlinedButton(
-        child: const Text(
-          "Criar cadastro",
-        ),
-        onPressed: () {
-          _onClickLogin(context);
-        },
-      ),
-    );
-  }
-
-  Container userList(BuildContext context) {
-    return Container(
-      height: 40.0,
-      margin: const EdgeInsets.only(top: 10.0),
-      child: OutlinedButton(
-        child: const Text(
-          "Lista de alunos",
-        ),
-        onPressed: () {
-          _onClickLogin(context);
-        },
-      ),
-    );
-  }
-
-  TextFormField textFormFieldSenha() {
-    return TextFormField(
-      controller: _tedSenha,
-      validator: _validaSenha,
-      obscureText: true,
-      keyboardType: TextInputType.text,
-      decoration: const InputDecoration(
-        labelText: "Senha",
-        hintText: "Informe a senha",
-      ),
-    );
-  }
-
-  TextFormField textFormFieldSenha2() {
-    return TextFormField(
-      controller: _tedSenha2,
-      validator: _validaSenha2,
-      obscureText: true,
-      keyboardType: TextInputType.text,
-      decoration: const InputDecoration(
-        hintText: "Confirme a senha",
-      ),
-    );
-  }
-
+/*
   _onClickLogin(BuildContext context) {
     final login = _tedNome.text;
     final mail = _tedMail.text;
@@ -208,8 +164,6 @@ void signIn(BuildContext context, login, senha) async {
   });
 }
 
-// A função abaixo não está funcionado por razões desconhecidas!
-// A verificação do login está sendo feita através de msgs no terminal
 showAlertDialog(BuildContext context, titleText, contentText) {
   Widget okButton = TextButton(
     onPressed: () {
@@ -238,7 +192,5 @@ showAlertDialog(BuildContext context, titleText, contentText) {
       return alerta;
     },
   );
+*/
 }
-
-//LET ME TEST THIS FFS
-void main() => runApp(NewUser());

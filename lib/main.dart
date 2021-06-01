@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 
 import 'package:ps_i1/components/input/number_input.dart';
 import 'package:ps_i1/components/ps_button.dart';
+import 'package:ps_i1/pages/new_user/new_user.dart';
 
 import 'package:ps_i1/pages/pages.dart' as pages;
 import 'package:ps_i1/theme/theme.dart' as theme;
@@ -57,7 +58,7 @@ class MyNewApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: theme.purplePlanning(),
-      home: pages.Login(),
+      home: const NewUser(),
     );
   }
 }
