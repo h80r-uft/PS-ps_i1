@@ -1,9 +1,19 @@
 import 'package:ps_i1/models/user.dart';
+import 'package:ps_i1/pages/pages.dart';
 import 'package:redux/redux.dart';
 import '../../models/user.dart';
 import '../../models/user_service.dart';
 import '../app_state.dart';
-import 'package:ps_i1/middlewares/navigation/navigation_actions.dart';
+// import 'package:ps_i1/middlewares/navigation/navigation_actions.dart';
+
+/// Ação de atualização no uid.
+///
+/// Atualiza o estado de [MySession]
+/// através do [uid] armazenado.
+class UidChange {
+  final String uid;
+  UidChange(this.uid);
+}
 
 /// Ação de atualização no email.
 ///
@@ -60,7 +70,8 @@ class LoadingAction {
   });
 }
 
-void Function(Store<AppState>) saveThunk(UserService userService) {
+void Function(Store<AppState>) saveThunk(
+    UserService userService, String email, String password) {
   return (Store<AppState> store) {
     store.dispatch(LoadingAction(loading: true));
 
@@ -68,33 +79,11 @@ void Function(Store<AppState>) saveThunk(UserService userService) {
       uid: store.state.mySessionState.uid,
       name: store.state.mySessionState.name,
       isTeacher: store.state.mySessionState.isTeacher,
-      // email: store.state.mySessionState.email,
-      // password: store.state.mySessionState.password,
+      email: store.state.mySessionState.email,
+      password: store.state.mySessionState.password,
     );
-    userService.login("email", "senha").then((value) {
-      store.dispatch(NavigateBack());
-    }).onError((error, stackTrace) {
-      store.dispatch(LoadingAction(
-        loading: false,
-        loadingError: error.toString(),
-      ));
-    });
-  };
-}
-
-void Function(Store<AppState>) login(
-    UserService userService, String email, String password) {
-  return (Store<AppState> store) {
-    store.dispatch(LoadingAction(
-      loading: true,
-      loadingError: null,
-    ));
-
-    userService.login("email", "senha").then((value) {
-      store.dispatch(LoadingAction(
-        loading: false,
-        loadingError: null,
-      ));
+    userService.login(email, password).then((value) {
+      store.dispatch(LoadingAction(loading: false));
     }).onError((error, stackTrace) {
       store.dispatch(LoadingAction(
         loading: false,

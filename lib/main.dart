@@ -63,10 +63,10 @@ class MyNewApp extends StatelessWidget {
         initialRoute: "/",
         routes: {
           "/": (context) {
-            return pages.Login();
+            return pages.MySession();
           },
           "/login": (context) {
-            return pages.Login();
+            return pages.MySession();
           }
         },
       ),

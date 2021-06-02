@@ -1,6 +1,6 @@
 import 'package:ps_i1/store/my_session/my_session_actions.dart';
 import 'package:ps_i1/store/my_session/my_session_state.dart';
-import 'package:ps_i1/pages/loading/loading.dart';
+import 'package:ps_i1/components/loading/loading.dart';
 
 /// Executa a [action] atribuída gerando um
 /// novo estado partindo do [state] original.
@@ -22,11 +22,6 @@ MySessionState mySessionReducer(MySessionState state, dynamic action) {
   if (action is PasswordChange) {
     return state.copyWith(
       password: action.password,
-    );
-  }
-  if (action is SessionStart) {
-    return state.copyWith(
-      user: action.user,
     );
   }
   if (action is ClearFormData) {

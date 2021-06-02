@@ -1,29 +1,61 @@
 import 'package:redux/redux.dart';
-import '../../../services/services.dart';
-import '../../../store/app_state.dart';
-import 'package:ps_i1/middlewares/navigation/navigation_actions.dart';
-import '../../../store/my_session/my_session_actions.dart';
+
+import 'package:ps_i1/services/services.dart';
+import 'package:ps_i1/store/my_session/my_session_actions.dart';
+import 'package:ps_i1/store/app_state.dart';
 
 class LoginViewModel {
+  final String uid;
+  final String? uidError;
+  final String email;
+  final String? emailError;
+  final String password;
+  final String? passwordError;
+  final bool isTeacher;
+  final String? isTeacherError;
   final bool loading;
   final String? loadingError;
-  final void Function(String, String) login1;
-  final void Function() navigateToLogin;
+
+  final void Function(String) onUidChanged;
+  final void Function(String) onEmailChanged;
+  final void Function(String) onPasswordChanged;
+  final void Function() onLoad;
 
   LoginViewModel({
-    required this.login1,
-    required this.navigateToLogin,
+    required this.uid,
+    required this.uidError,
+    required this.email,
+    required this.emailError,
+    required this.password,
+    required this.passwordError,
+    required this.isTeacher,
+    required this.isTeacherError,
     required this.loading,
-    this.loadingError,
+    required this.loadingError,
+    required this.onUidChanged,
+    required this.onEmailChanged,
+    required this.onPasswordChanged,
+    required this.onLoad,
   });
 
   factory LoginViewModel.fromStore(Store<AppState> store) {
     return LoginViewModel(
+      uid: store.state.mySessionState.uid,
+      uidError: store.state.mySessionState.uidError,
+      email: store.state.mySessionState.email,
+      emailError: store.state.mySessionState.emailError,
+      password: store.state.mySessionState.password,
+      passwordError: store.state.mySessionState.passwordError,
+      isTeacher: store.state.mySessionState.isTeacher,
+      isTeacherError: store.state.mySessionState.isTeacherError,
       loading: store.state.mySessionState.loading,
       loadingError: store.state.mySessionState.loadingError,
-      login1: (String email, String password) =>
-          store.dispatch(login(Services.user, "login", "senha")),
-      navigateToLogin: () => store.dispatch(NavigateTo("/login")),
+      onUidChanged: (String uid) => store.dispatch(UidChange(uid)),
+      onEmailChanged: (String email) => store.dispatch(EmailChange(email)),
+      onPasswordChanged: (String password) =>
+          store.dispatch(EmailChange(password)),
+      onLoad: () =>
+          store.dispatch(saveThunk(Services.users, "email", "password")),
     );
   }
 }

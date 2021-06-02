@@ -1,26 +1,20 @@
-import 'package:ps_i1/models/user.dart';
-import 'package:ps_i1/store/add_student/add_student_actions.dart';
+import 'package:flutter/foundation.dart';
+
+@immutable
 
 /// Estado atual da sessão.
 class MySessionState {
   /// Numero dentificador
   /// do usuario
-  final String? uid;
+  final String uid;
   final String? uidError;
 
-  /// Usuário logado.
-  final User? user;
-
-  /// Erro obtido ao tentar
-  /// fazer login.
-  final String? userError;
-
   /// Nome completo do usuário.
-  final String? name;
+  final String name;
   final String? nameError;
 
   /// Classificador de tipo de usuário
-  final String? isTeacher;
+  final bool isTeacher;
   final String? isTeacherError;
 
   /// Email do usuário que
@@ -30,7 +24,7 @@ class MySessionState {
   /// e só permanece na memória
   /// enquanto o login não foi
   /// finalizado.
-  final String? email;
+  final String email;
 
   /// Erro obtido ao tentar
   /// armazenar temporariamente
@@ -44,7 +38,7 @@ class MySessionState {
   /// e só permanece na memória
   /// enquanto o login não foi
   /// finalizado.
-  final String? password;
+  final String password;
 
   /// Erro obtido ao tentar
   /// armazenar temporariamente
@@ -64,8 +58,6 @@ class MySessionState {
   MySessionState({
     required this.uid,
     this.uidError,
-    required this.user,
-    this.userError,
     required this.name,
     this.nameError,
     required this.email,
@@ -82,12 +74,11 @@ class MySessionState {
   /// para a sessão do usuário.
   factory MySessionState.initial() {
     return MySessionState(
-      uid: null,
-      name: null,
-      user: null,
-      isTeacher: null,
-      email: null,
-      password: null,
+      uid: "",
+      name: "",
+      isTeacher: false,
+      email: "",
+      password: "",
       loading: false,
     );
   }
@@ -99,15 +90,13 @@ class MySessionState {
   MySessionState copyWith({
     String? uid,
     String? uidError,
-    User? user,
-    String? userError,
     String? name,
     String? nameError,
     String? email,
     String? emailError,
     String? password,
     String? passwordError,
-    String? isTeacher,
+    bool? isTeacher,
     String? isTeacherError,
     bool? loading,
     String? loadingError,
@@ -115,8 +104,6 @@ class MySessionState {
     return MySessionState(
       uid: uid ?? this.uid,
       uidError: uidError ?? this.uidError,
-      user: user ?? this.user,
-      userError: userError ?? this.userError,
       name: name ?? this.name,
       nameError: nameError ?? this.nameError,
       email: email ?? this.email,

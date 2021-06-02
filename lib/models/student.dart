@@ -12,5 +12,10 @@ class Student extends User {
   final double secondGrade;
 
   Student(User user, {required this.firstGrade, required this.secondGrade})
-      : super(name: user.name, uid: user.uid, isTeacher: user.isTeacher);
+      : super(
+            name: user.name,
+            uid: user.uid,
+            isTeacher: user.isTeacher,
+            email: user.email,
+            password: user.password);
 }
