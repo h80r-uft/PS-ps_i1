@@ -3,175 +3,115 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
 firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
 
+class Input extends StatelessWidget {
+  final bool isPassword;
+  final String hint;
+  final Widget? suffix;
+
+  const Input({
+    Key? key,
+    required this.hint,
+    this.isPassword = false,
+    this.suffix,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    const border = OutlineInputBorder();
+
+    return Container(
+      margin: const EdgeInsets.all(12),
+      width: 400,
+      height: 35,
+      child: TextFormField(
+        obscureText: isPassword,
+        style: const TextStyle(fontSize: 16, color: Colors.black87),
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding: const EdgeInsets.only(left: 8.0),
+          border: border,
+          focusedBorder: border,
+          hintText: hint,
+          hintStyle: const TextStyle(color: Colors.black38, fontSize: 16),
+          suffixIcon: suffix,
+        ),
+      ),
+    );
+  }
+}
+
 class Login extends StatelessWidget {
-  Login({Key? key}) : super(key: key);
-
-  final _tedLogin = TextEditingController();
-  final _tedSenha = TextEditingController();
-
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  const Login({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Fazer o Login"),
+        title: const Text('Fazer Login'),
+        centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: _body(context),
-      ),
-    );
-  }
-
-  String? _validaLogin(String? text) {
-    if (text!.isEmpty) {
-      return "Informe o login";
-    }
-    return null;
-  }
-
-  String? _validaSenha(String? text) {
-    if (text!.isEmpty) {
-      return "Informe a senha";
-    }
-    return null;
-  }
-
-  _body(BuildContext context) {
-    return Form(
-        key: _formKey,
-        child: ListView(
-          children: <Widget>[
-            textFormFieldLogin(),
-            textFormFieldSenha(),
-            containerButton(context)
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Input(hint: 'Email'),
+            Input(
+              hint: 'Senha',
+              isPassword: true,
+              suffix: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.visibility,
+                  size: 18,
+                  color: Colors.black45,
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 12, right: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SizedBox(
+                    width: 135,
+                    height: 20,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        primary: Colors.grey,
+                      ),
+                      child: const Text(
+                        'Esqueci a senha',
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Container(
+              width: 400,
+              height: 40,
+              margin: const EdgeInsets.only(top: 20, left: 12, right: 12),
+              child: OutlinedButton(
+                onPressed: () {},
+                child: const Text(
+                  'Entrar',
+                ),
+              ),
+            )
           ],
-        ));
-  }
-
-  TextFormField textFormFieldLogin() {
-    return TextFormField(
-      controller: _tedLogin,
-      validator: _validaLogin,
-      keyboardType: TextInputType.text,
-      decoration: const InputDecoration(
-        labelText: "Login",
-        hintText: "Informe o login",
-      ),
-    );
-  }
-
-  Container containerButton(BuildContext context) {
-    return Container(
-      height: 40.0,
-      margin: const EdgeInsets.only(top: 10.0),
-      child: OutlinedButton(
-        child: const Text(
-          "Login",
         ),
-        onPressed: () {
-          _onClickLogin(context);
-        },
       ),
     );
   }
-
-  TextFormField textFormFieldSenha() {
-    return TextFormField(
-      controller: _tedSenha,
-      validator: _validaSenha,
-      obscureText: true,
-      keyboardType: TextInputType.text,
-      decoration: const InputDecoration(
-        labelText: "Senha",
-        hintText: "Informe a senha",
-      ),
-    );
-  }
-
-  _onClickLogin(BuildContext context) {
-    final login = _tedLogin.text;
-    final senha = _tedSenha.text;
-
-    print("Login: $login , Senha: $senha ");
-
-    if (!_formKey.currentState!.validate()) {
-      return;
-    }
-
-    if (login.isEmpty || senha.isEmpty) {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text("Erro"),
-            content: const Text("Login e/ou Senha invalido(s)"),
-            actions: <Widget>[
-              TextButton(
-                child: const Text("OK"),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              )
-            ],
-          );
-        },
-      );
-    } else {
-      signIn(
-        context,
-        login,
-        senha,
-      );
-    }
-  }
-}
-
-/// A função signIn loga um(a) usuário(a) no sistema, com base nos dados do Firestone
-void signIn(BuildContext context, login, senha) async {
-  firebaseAuth
-      .signInWithEmailAndPassword(email: login, password: senha)
-      .then((userCredential) {
-    // Signed in
-    showAlertDialog(context, "LOGADO!", login);
-    print(userCredential.user);
-    print(login + " está logade!");
-  }).catchError((error) {
-    showAlertDialog(context, "NÃO LOGADO!", "error");
-    print(error);
-    print("O login não foi concluído :(");
-  });
-}
-
-// A função abaixo não está funcionado por razões desconhecidas!
-// A verificação do login está sendo feita através de msgs no terminal
-showAlertDialog(BuildContext context, titleText, contentText) {
-  Widget okButton = TextButton(
-    onPressed: () {
-      Navigator.pop(context);
-    },
-    child: const Text(
-      "OK",
-    ),
-  );
-
-  AlertDialog alerta = AlertDialog(
-    title: Text(
-      titleText,
-    ),
-    content: Text(
-      contentText,
-    ),
-    actions: [
-      okButton,
-    ],
-  );
-
-  showDialog(
-    context: context,
-    builder: (context) {
-      return alerta;
-    },
-  );
 }
