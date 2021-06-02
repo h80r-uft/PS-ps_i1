@@ -8,7 +8,12 @@ class MyInput extends StatelessWidget {
   final String? hint;
   final bool isPassword;
 
-  const MyInput({required this.label, this.hint, this.isPassword = false});
+  const MyInput({
+    Key? key,
+    required this.label,
+    this.hint,
+    this.isPassword = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +42,26 @@ class NewUser extends StatelessWidget {
         child: Form(
           child: ListView(
             children: <Widget>[
-              MyInput(label: 'Nome', hint: 'Informe o nome', isPassword: false),
-              MyInput(
-                  label: 'E-Mail', hint: 'Informe o e-mail', isPassword: false),
-              MyInput(
-                  label: 'Senha', hint: 'Informe a senha', isPassword: true),
-              MyInput(label: '', hint: 'Confirme a senha', isPassword: true),
+              const MyInput(
+                label: 'Nome',
+                hint: 'Informe o nome',
+                isPassword: false,
+              ),
+              const MyInput(
+                label: 'E-Mail',
+                hint: 'Informe o e-mail',
+                isPassword: false,
+              ),
+              const MyInput(
+                label: 'Senha',
+                hint: 'Informe a senha',
+                isPassword: true,
+              ),
+              const MyInput(
+                label: 'Confirmação',
+                hint: 'Confirme a senha',
+                isPassword: true,
+              ),
               Container(
                 height: 40.0,
                 margin: const EdgeInsets.only(top: 10.0),
