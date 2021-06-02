@@ -2,28 +2,33 @@
 // a esta página do código.
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 import 'package:ps_i1/components/input/number_input.dart';
 import 'package:ps_i1/components/ps_button.dart';
 
 import 'package:ps_i1/pages/pages.dart' as pages;
 import 'package:ps_i1/theme/theme.dart' as theme;
+import 'store/app_state.dart';
+import 'store/app_store.dart' show createAppStore;
+
+import 'keys.dart';
 
 /// Esta é a função principal, responsável por
 /// executar o aplicativo.
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  setPathUrlStrategy();
+  runApp(App());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+class App extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  _AppState createState() => _AppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _AppState extends State<App> {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
   @override
@@ -35,9 +40,9 @@ class _MyAppState extends State<MyApp> {
           return pages.Error(snapshot);
         }
         if (snapshot.connectionState == ConnectionState.done) {
-          return const MyNewApp();
+          return MyNewApp();
         }
-        return pages.Loading(snapshot);
+        return pages.Loading();
       },
     );
   }
@@ -49,15 +54,22 @@ class _MyAppState extends State<MyApp> {
 /// aplicada neste, e também inicializa o fluxo
 /// de páginas através da `home`
 class MyNewApp extends StatelessWidget {
-  /// Construtor do controle de fluxo
-  const MyNewApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: theme.purplePlanning(),
-      home: pages.Login(),
+    return StoreProvider<AppState>(
+      store: createAppStore(),
+      child: MaterialApp(
+        navigatorKey: Keys.navigationKey,
+        initialRoute: "/",
+        routes: {
+          "/": (context) {
+            return pages.Login();
+          },
+          "/login": (context) {
+            return pages.Login();
+          }
+        },
+      ),
     );
   }
 }

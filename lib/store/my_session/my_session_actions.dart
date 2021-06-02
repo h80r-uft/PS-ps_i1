@@ -48,13 +48,13 @@ class SessionEnd {}
 /// Informa o estado de login do
 /// usuário através do booleano
 /// [loading].
-class Loading {
+class LoadingAction {
   /// Estado de login.
   final bool loading;
 
   /// Erro obtido ao entrar.
   final String? loadingError;
-  Loading({
+  LoadingAction({
     required this.loading,
     this.loadingError,
   });
@@ -62,7 +62,7 @@ class Loading {
 
 void Function(Store<AppState>) saveThunk(UserService userService) {
   return (Store<AppState> store) {
-    store.dispatch(Loading(loading: true));
+    store.dispatch(LoadingAction(loading: true));
 
     final user = User(
       uid: store.state.mySessionState.uid,
@@ -74,7 +74,7 @@ void Function(Store<AppState>) saveThunk(UserService userService) {
     userService.login("email", "senha").then((value) {
       store.dispatch(NavigateBack());
     }).onError((error, stackTrace) {
-      store.dispatch(Loading(
+      store.dispatch(LoadingAction(
         loading: false,
         loadingError: error.toString(),
       ));
@@ -85,18 +85,18 @@ void Function(Store<AppState>) saveThunk(UserService userService) {
 void Function(Store<AppState>) login(
     UserService userService, String email, String password) {
   return (Store<AppState> store) {
-    store.dispatch(Loading(
+    store.dispatch(LoadingAction(
       loading: true,
       loadingError: null,
     ));
 
     userService.login("email", "senha").then((value) {
-      store.dispatch(Loading(
+      store.dispatch(LoadingAction(
         loading: false,
         loadingError: null,
       ));
     }).onError((error, stackTrace) {
-      store.dispatch(Loading(
+      store.dispatch(LoadingAction(
         loading: false,
         loadingError: error.toString(),
       ));

@@ -22,7 +22,7 @@ class LoginViewModel {
       loading: store.state.mySessionState.loading,
       loadingError: store.state.mySessionState.loadingError,
       login1: (String email, String password) =>
-          store.dispatch(login(Services.user, "z", "z")),
+          store.dispatch(login(Services.user, "login", "senha")),
       navigateToLogin: () => store.dispatch(NavigateTo("/login")),
     );
   }
