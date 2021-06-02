@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:ps_i1/pages/login/login_view_model.dart';
 
 firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
 
@@ -70,9 +71,9 @@ class Login extends StatelessWidget {
         child: const Text(
           "Login",
         ),
-        onPressed: () {
-          _onClickLogin(context);
-        },
+
+        /// A função signIn loga um(a) usuário(a) no sistema, com base nos dados do Firestone
+        onPressed: LoginViewModel.navigateToLogin,
       ),
     );
   }
@@ -89,7 +90,7 @@ class Login extends StatelessWidget {
       ),
     );
   }
-
+/*
   _onClickLogin(BuildContext context) {
     final login = _tedLogin.text;
     final senha = _tedSenha.text;
@@ -126,9 +127,9 @@ class Login extends StatelessWidget {
       );
     }
   }
-}
+}*/
 
-/// A função signIn loga um(a) usuário(a) no sistema, com base nos dados do Firestone
+/*
 void signIn(BuildContext context, login, senha) async {
   firebaseAuth
       .signInWithEmailAndPassword(email: login, password: senha)
@@ -139,36 +140,37 @@ void signIn(BuildContext context, login, senha) async {
   }).catchError((error) {
     showAlertDialog(context, "NÃO LOGADO!", error.message);
   });
-}
+}*/
 
 // A função abaixo não está funcionado por razões desconhecidas!
 // A verificação do login está sendo feita através de msgs no terminal
-showAlertDialog(BuildContext context, titleText, contentText) {
-  Widget okButton = TextButton(
-    onPressed: () {
-      Navigator.pop(context);
-    },
-    child: const Text(
-      "OK",
-    ),
-  );
+  showAlertDialog(BuildContext context, titleText, contentText) {
+    Widget okButton = TextButton(
+      onPressed: () {
+        Navigator.pop(context);
+      },
+      child: const Text(
+        "OK",
+      ),
+    );
 
-  AlertDialog alerta = AlertDialog(
-    title: Text(
-      titleText,
-    ),
-    content: Text(
-      contentText,
-    ),
-    actions: [
-      okButton,
-    ],
-  );
+    AlertDialog alerta = AlertDialog(
+      title: Text(
+        titleText,
+      ),
+      content: Text(
+        contentText,
+      ),
+      actions: [
+        okButton,
+      ],
+    );
 
-  showDialog(
-    context: context,
-    builder: (context) {
-      return alerta;
-    },
-  );
+    showDialog(
+      context: context,
+      builder: (context) {
+        return alerta;
+      },
+    );
+  }
 }

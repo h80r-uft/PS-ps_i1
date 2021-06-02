@@ -71,10 +71,30 @@ void Function(Store<AppState>) saveThunk(UserService userService) {
       // email: store.state.mySessionState.email,
       // password: store.state.mySessionState.password,
     );
-    userService.login("email", "senha").then((newNote) {
-      store.dispatch(ClearFormData());
-      store.dispatch(Loading(loading: false));
+    userService.login("email", "senha").then((value) {
       store.dispatch(NavigateBack());
+    }).onError((error, stackTrace) {
+      store.dispatch(Loading(
+        loading: false,
+        loadingError: error.toString(),
+      ));
+    });
+  };
+}
+
+void Function(Store<AppState>) login(
+    UserService userService, String email, String password) {
+  return (Store<AppState> store) {
+    store.dispatch(Loading(
+      loading: true,
+      loadingError: null,
+    ));
+
+    userService.login("email", "senha").then((value) {
+      store.dispatch(Loading(
+        loading: false,
+        loadingError: null,
+      ));
     }).onError((error, stackTrace) {
       store.dispatch(Loading(
         loading: false,
