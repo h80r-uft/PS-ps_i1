@@ -11,7 +11,7 @@ import 'package:ps_i1/store/add_student/add_student_state.dart';
 /// - [PasswordChange]
 /// - [ConfirmPasswordChange]
 /// - [ClearFormData]
-/// - [Saving]
+/// - [Registering]
 AddStudentState addStudentReducer(AddStudentState state, dynamic action) {
   if (action is NameChange) {
     return state.copyWith(
@@ -36,10 +36,10 @@ AddStudentState addStudentReducer(AddStudentState state, dynamic action) {
   if (action is ClearFormData) {
     return AddStudentState.initial();
   }
-  if (action is Saving) {
+  if (action is Registering) {
     return state.copyWith(
-      saving: action.saving,
-      savingError: action.savingError,
+      registering: action.registering,
+      registeringError: action.registeringError,
     );
   }
   return state;

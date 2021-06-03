@@ -45,16 +45,16 @@ class ClearFormData {}
 /// Ação de confirmação do cadastro.
 ///
 /// Confirma o salvamento do estudante
-/// através do booleano [saving].
-class Saving {
+/// através do booleano [registering].
+class Registering {
   /// Estado de salvamento.
-  final bool saving;
+  final bool registering;
 
   /// Erro obtido ao salvar.
-  final String? savingError;
-  Saving({
-    required this.saving,
-    this.savingError,
+  final String? registeringError;
+  Registering({
+    required this.registering,
+    this.registeringError,
   });
 }
 
