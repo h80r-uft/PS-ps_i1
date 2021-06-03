@@ -30,11 +30,11 @@ class AddStudentState {
 
   /// Estado de salvamento do novo
   /// cadastro.
-  final bool saving;
+  final bool registering;
 
   /// Erro obtido ao tentar salvar
   /// o novo cadastro.
-  final String? savingError;
+  final String? registeringError;
 
   /// Gerador de estado da criação
   /// do novo estudante.
@@ -47,8 +47,8 @@ class AddStudentState {
     this.passwordError,
     required this.confirmPassword,
     this.confirmPasswordError,
-    required this.saving,
-    this.savingError,
+    required this.registering,
+    this.registeringError,
   });
 
   /// Gerador do estado inicial para
@@ -59,7 +59,7 @@ class AddStudentState {
       email: '',
       password: '',
       confirmPassword: '',
-      saving: false,
+      registering: false,
     );
   }
 
@@ -75,8 +75,8 @@ class AddStudentState {
     String? passwordError,
     String? confirmPassword,
     String? confirmPasswordError,
-    bool? saving,
-    String? savingError,
+    bool? registering,
+    String? registeringError,
   }) {
     return AddStudentState(
       name: name ?? this.name,
@@ -87,8 +87,8 @@ class AddStudentState {
       passwordError: passwordError ?? this.passwordError,
       confirmPassword: confirmPassword ?? this.confirmPassword,
       confirmPasswordError: confirmPasswordError ?? this.confirmPasswordError,
-      saving: saving ?? this.saving,
-      savingError: savingError ?? this.savingError,
+      registering: registering ?? this.registering,
+      registeringError: registeringError ?? this.registeringError,
     );
   }
 }
