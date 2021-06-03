@@ -13,4 +13,15 @@ class Student extends User {
 
   Student(User user, {required this.firstGrade, required this.secondGrade})
       : super(name: user.name, uid: user.uid);
+
+  Student copyFrom({
+    double? firstGrade,
+    double? secondGrade,
+  }) {
+    return Student(
+      User(name: name, uid: uid),
+      firstGrade: firstGrade ?? this.firstGrade,
+      secondGrade: secondGrade ?? this.secondGrade,
+    );
+  }
 }
