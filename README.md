@@ -29,6 +29,13 @@
 	
 ![cadastro](./.readme/screens/register.png)
 
+### Listagem de Alunos
+
+	Nesta tela é possível visualizar os alunos cadastrados
+	e também editar a nota do aluno.
+	
+![students](./.readme/screens/students.png)
+
 ### Visualização de Notas
 
 	Nesta tela o aluno é capaz de visualizar suas notas e também recebe
