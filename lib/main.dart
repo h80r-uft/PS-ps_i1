@@ -56,20 +56,10 @@ class _AppState extends State<App> {
 class MyNewApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StoreProvider<AppState>(
-      store: createAppStore(),
-      child: MaterialApp(
-        navigatorKey: Keys.navigationKey,
-        initialRoute: "/",
-        routes: {
-          "/": (context) {
-            return pages.MySession();
-          },
-          "/login": (context) {
-            return pages.MySession();
-          }
-        },
-      ),
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: theme.purplePlanning(),
+      home: const pages.NewUser(),
     );
   }
 }
