@@ -14,5 +14,33 @@ StudentsState studentsReducer(StudentsState state, dynamic action) {
       loadingError: action.loadingError,
     );
   }
+  if (action is OnTapItem) {
+    return state.copyWith(
+      isEditing: true,
+      editedStudent: state.students[action.index],
+    );
+  }
+  if (action is FirstGradeChange) {
+    final currentStudent = state.editedStudent!;
+    final grade = double.tryParse(action.grade) ?? 0.0;
+
+    return state.copyWith(
+      editedStudent: currentStudent.copyFrom(firstGrade: grade),
+    );
+  }
+  if (action is SecondGradeChange) {
+    final currentStudent = state.editedStudent!;
+    final grade = double.tryParse(action.grade) ?? 0.0;
+
+    return state.copyWith(
+      editedStudent: currentStudent.copyFrom(secondGrade: grade),
+    );
+  }
+  if (action is Saving) {
+    return state.copyWith(
+      saving: action.saving,
+      savingError: action.savingError,
+    );
+  }
   return state;
 }

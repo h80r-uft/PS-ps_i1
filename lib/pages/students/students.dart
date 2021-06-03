@@ -65,10 +65,13 @@ class Students extends StatelessWidget {
         centerTitle: true,
       ),
       body: ListView.separated(
-        itemBuilder: (context, index) => StudentItem(
-          size: MediaQuery.of(context).size,
-          fullName: tempStudents[index].name,
-          status: Random().nextInt(3),
+        itemBuilder: (context, index) => ListTile(
+          onTap: () {},
+          title: StudentItem(
+            size: MediaQuery.of(context).size,
+            fullName: tempStudents[index].name,
+            status: Random().nextInt(3),
+          ),
         ),
         itemCount: tempStudents.length,
         separatorBuilder: (context, index) => Divider(
