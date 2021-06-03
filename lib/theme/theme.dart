@@ -55,5 +55,13 @@ ThemeData purplePlanning() {
         fontSize: 18.0,
       ),
     ),
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: primaryColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(40),
+        ),
+      ),
+    ),
   );
 }
