@@ -61,21 +61,21 @@ class MyNewApp extends StatelessWidget {
       child: MaterialApp(
         theme: theme.purplePlanning(),
         navigatorKey: Keys.navigationKey,
-        initialRoute: "/",
+        initialRoute: '/',
         routes: {
-          "/": (context) {
+          '/': (context) {
             return const pages.MySession();
           },
-          "/login": (context) {
+          '/login': (context) {
             return const pages.MySession();
           },
-          "/new_student": (context) {
+          '/new_student': (context) {
             return const pages.NewUser();
           },
           '/students': (context) {
             return const pages.Students();
           },
-          "/grade": (context) {
+          '/grade': (context) {
             return const pages.Grades();
           }
         },
