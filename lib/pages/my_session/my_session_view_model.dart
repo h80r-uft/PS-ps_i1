@@ -1,8 +1,9 @@
 import 'package:redux/redux.dart';
-import '../../../services/services.dart';
-import '../../../store/app_state.dart';
+
+import 'package:ps_i1/services/services.dart';
 import 'package:ps_i1/middlewares/navigation/navigation_actions.dart';
-import '../../../store/my_session/my_session_actions.dart';
+import 'package:ps_i1/store/app_state.dart';
+import 'package:ps_i1/store/my_session/my_session_actions.dart';
 
 class MySessionViewModel {
   final bool loading;
