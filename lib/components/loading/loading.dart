@@ -8,8 +8,8 @@ import 'package:ps_i1/theme/theme.dart' as theme;
 class Loading extends StatelessWidget {
   /// Obtido através do `future` da conexão,
   /// utilizado para indicar o erro.
-  final AsyncSnapshot snapshot;
-  const Loading(this.snapshot, {Key? key}) : super(key: key);
+  // final AsyncSnapshot snapshot;
+  // const Loading(/*this.snapshot, {Key? key}) : super(key: key*/);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class Loading extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Text(snapshot.connectionState.toString()),
+              Text("rrrrrrrroi"),
             ],
           ),
         ),

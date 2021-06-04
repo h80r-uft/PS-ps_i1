@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ps_i1/models/student.dart';
+import 'package:ps_i1/models/user.dart';
 import 'package:ps_i1/store/app_state.dart';
 import 'package:redux/redux.dart';
 
@@ -41,10 +42,21 @@ class GradesViewModel {
   }
 
   factory GradesViewModel.fromStore(Store<AppState> store) {
-    final student = store.state.mySessionState.user! as Student;
+    final state = store.state.mySessionState;
+    final student = Student(
+      User(
+        email: state.email,
+        password: state.password,
+        isTeacher: state.isTeacher,
+        name: state.name,
+        uid: state.uid,
+      ),
+      firstGrade: 0,
+      secondGrade: 0,
+    );
 
     return GradesViewModel(
-      name: student.name,
+      name: student.name!,
       firstGrade: student.firstGrade,
       secondGrade: student.secondGrade,
       onExit: () {},

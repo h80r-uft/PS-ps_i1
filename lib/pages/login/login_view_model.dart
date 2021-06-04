@@ -1,42 +1,66 @@
 import 'package:redux/redux.dart';
 
+import 'package:ps_i1/services/services.dart';
 import 'package:ps_i1/store/my_session/my_session_actions.dart';
-
 import 'package:ps_i1/store/app_state.dart';
 
 class LoginViewModel {
+  final String uid;
+  final String? uidError;
   final String email;
-  final Function(String) onEmailChange;
-
+  final String? emailError;
   final String password;
-  final Function(String) onPasswordChange;
+  final String? passwordError;
+  final bool isTeacher;
+  final String? isTeacherError;
+  final bool loading;
+  final String? loadingError;
 
-  final Function() recoverPassword;
-  final Function() login;
+  final void Function(String)? onUidChanged;
+  final void Function(String)? onEmailChanged;
+  final void Function(String)? onPasswordChanged;
+  final void Function(bool)? onIsTeacherChanged;
+  final void Function(String, String)? onLoad;
 
-  final String? loginError;
-
-  const LoginViewModel({
+  LoginViewModel({
+    required this.uid,
+    required this.uidError,
     required this.email,
-    required this.onEmailChange,
+    required this.emailError,
     required this.password,
-    required this.onPasswordChange,
-    required this.recoverPassword,
-    required this.login,
-    required this.loginError,
+    required this.passwordError,
+    required this.isTeacher,
+    required this.isTeacherError,
+    required this.loading,
+    required this.loadingError,
+    this.onUidChanged,
+    this.onEmailChanged,
+    this.onPasswordChanged,
+    this.onIsTeacherChanged,
+    this.onLoad,
   });
 
   factory LoginViewModel.fromStore(Store<AppState> store) {
-    final state = store.state.mySessionState;
+    print("FACTORY LoginViewModel");
     return LoginViewModel(
-      email: state.email ?? '',
-      onEmailChange: (String email) => store.dispatch(EmailChange(email)),
-      password: state.password ?? '',
-      onPasswordChange: (String password) =>
+      uid: store.state.mySessionState.uid,
+      uidError: store.state.mySessionState.uidError,
+      email: store.state.mySessionState.email,
+      emailError: store.state.mySessionState.emailError,
+      password: store.state.mySessionState.password,
+      passwordError: store.state.mySessionState.passwordError,
+      isTeacher: store.state.mySessionState.isTeacher,
+      isTeacherError: store.state.mySessionState.isTeacherError,
+      loading: store.state.mySessionState.loading,
+      loadingError: store.state.mySessionState.loadingError,
+      onUidChanged: (String uid) => store.dispatch(UidChange(uid)),
+      onEmailChanged: (String email) => store.dispatch(EmailChange(email)),
+      onPasswordChanged: (String password) =>
           store.dispatch(PasswordChange(password)),
-      recoverPassword: () => {},
-      login: () => {},
-      loginError: state.loadingError,
+      onIsTeacherChanged: (bool isTeacher) =>
+          store.dispatch(IsTeacherChange(isTeacher)),
+      onLoad: (String login, String password) =>
+          store.dispatch(saveThunk(Services.users, login, password)),
     );
   }
 }

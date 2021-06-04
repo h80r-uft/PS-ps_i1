@@ -1,13 +1,21 @@
-import 'package:ps_i1/models/user.dart';
+import 'package:flutter/foundation.dart';
+
+@immutable
 
 /// Estado atual da sessão.
 class MySessionState {
-  /// Usuário logado.
-  final User? user;
+  /// Numero dentificador
+  /// do usuario
+  final String uid;
+  final String? uidError;
 
-  /// Erro obtido ao tentar
-  /// fazer login.
-  final String? userError;
+  /// Nome completo do usuário.
+  final String name;
+  final String? nameError;
+
+  /// Classificador de tipo de usuário
+  final bool isTeacher;
+  final String? isTeacherError;
 
   /// Email do usuário que
   /// deseja fazer login.
@@ -16,7 +24,7 @@ class MySessionState {
   /// e só permanece na memória
   /// enquanto o login não foi
   /// finalizado.
-  final String? email;
+  final String email;
 
   /// Erro obtido ao tentar
   /// armazenar temporariamente
@@ -30,7 +38,7 @@ class MySessionState {
   /// e só permanece na memória
   /// enquanto o login não foi
   /// finalizado.
-  final String? password;
+  final String password;
 
   /// Erro obtido ao tentar
   /// armazenar temporariamente
@@ -47,13 +55,17 @@ class MySessionState {
 
   /// Gerador de estado da
   /// sessão do usuário.
-  MySessionState({
-    required this.user,
-    this.userError,
+  const MySessionState({
+    required this.uid,
+    this.uidError,
+    required this.name,
+    this.nameError,
     required this.email,
     this.emailError,
     required this.password,
     this.passwordError,
+    required this.isTeacher,
+    this.isTeacherError,
     required this.loading,
     this.loadingError,
   });
@@ -61,10 +73,12 @@ class MySessionState {
   /// Gerador do estado inicial
   /// para a sessão do usuário.
   factory MySessionState.initial() {
-    return MySessionState(
-      user: null,
-      email: null,
-      password: null,
+    return const MySessionState(
+      uid: "",
+      name: "",
+      isTeacher: false,
+      email: "",
+      password: "",
       loading: false,
     );
   }
@@ -73,23 +87,31 @@ class MySessionState {
   /// de um [MySessionState] original
   /// e os atributos que se deseja
   /// modificar.
-  MySessionState copyWith({
-    User? user,
-    String? userError,
+  copyWith({
+    String? uid,
+    String? uidError,
+    String? name,
+    String? nameError,
     String? email,
     String? emailError,
     String? password,
     String? passwordError,
+    bool? isTeacher,
+    String? isTeacherError,
     bool? loading,
     String? loadingError,
   }) {
     return MySessionState(
-      user: user ?? this.user,
-      userError: userError ?? this.userError,
+      uid: uid ?? this.uid,
+      uidError: uidError ?? this.uidError,
+      name: name ?? this.name,
+      nameError: nameError ?? this.nameError,
       email: email ?? this.email,
       emailError: emailError ?? this.emailError,
       password: password ?? this.password,
       passwordError: passwordError ?? this.passwordError,
+      isTeacher: isTeacher ?? this.isTeacher,
+      isTeacherError: isTeacherError ?? this.isTeacherError,
       loading: loading ?? this.loading,
       loadingError: loadingError ?? this.loadingError,
     );

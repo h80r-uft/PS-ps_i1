@@ -12,14 +12,26 @@ class Student extends User {
   final double secondGrade;
 
   Student(User user, {required this.firstGrade, required this.secondGrade})
-      : super(name: user.name, uid: user.uid);
+      : super(
+          name: user.name,
+          uid: user.uid,
+          isTeacher: user.isTeacher,
+          email: user.email,
+          password: user.password,
+        );
 
   Student copyFrom({
     double? firstGrade,
     double? secondGrade,
   }) {
     return Student(
-      User(name: name, uid: uid),
+      User(
+        name: name,
+        uid: uid,
+        isTeacher: isTeacher,
+        email: email,
+        password: password,
+      ),
       firstGrade: firstGrade ?? this.firstGrade,
       secondGrade: secondGrade ?? this.secondGrade,
     );
