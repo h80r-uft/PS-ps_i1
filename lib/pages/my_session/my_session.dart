@@ -116,7 +116,7 @@ class MySession extends StatelessWidget {
                   margin: const EdgeInsets.only(top: 20, left: 12, right: 12),
                   child: OutlinedButton(
                     onPressed: () =>
-                        viewModel.onLoad!(viewModel.email, viewModel.password),
+                        viewModel.onLoad(viewModel.email, viewModel.password),
                     child: const Text(
                       'Entrar',
                     ),

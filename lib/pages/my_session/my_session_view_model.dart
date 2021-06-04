@@ -16,11 +16,11 @@ class MySessionViewModel {
   final bool loading;
   final String? loadingError;
 
-  final void Function(String)? onUidChanged;
-  final void Function(String)? onEmailChanged;
-  final void Function(String)? onPasswordChanged;
-  final void Function(bool)? onIsTeacherChanged;
-  final void Function(String, String)? onLoad;
+  final void Function(String) onUidChanged;
+  final void Function(String) onEmailChanged;
+  final void Function(String) onPasswordChanged;
+  final void Function(bool) onIsTeacherChanged;
+  final void Function(String, String) onLoad;
 
   MySessionViewModel({
     required this.uid,
@@ -33,11 +33,11 @@ class MySessionViewModel {
     required this.isTeacherError,
     required this.loading,
     required this.loadingError,
-    this.onUidChanged,
-    this.onEmailChanged,
-    this.onPasswordChanged,
-    this.onIsTeacherChanged,
-    this.onLoad,
+    required this.onUidChanged,
+    required this.onEmailChanged,
+    required this.onPasswordChanged,
+    required this.onIsTeacherChanged,
+    required this.onLoad,
   });
 
   factory MySessionViewModel.fromStore(Store<AppState> store) {
