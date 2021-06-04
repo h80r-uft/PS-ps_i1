@@ -72,6 +72,9 @@ class MyNewApp extends StatelessWidget {
           "/new_student": (context) {
             return const pages.NewUser();
           },
+          '/students': (context) {
+            return const pages.Students();
+          },
           "/grade": (context) {
             return const pages.Grades();
           }
