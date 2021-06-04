@@ -6,7 +6,9 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:ps_i1/components/students_item.dart';
 
 import 'package:ps_i1/pages/students/students_view_model.dart';
+import 'package:ps_i1/services/services.dart';
 import 'package:ps_i1/store/app_state.dart';
+import 'package:ps_i1/store/students/students_actions.dart';
 
 class Students extends StatelessWidget {
   const Students({Key? key}) : super(key: key);
@@ -14,11 +16,12 @@ class Students extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, StudentsViewModel>(
+      onInit: (store) => store.dispatch(loadThunk(Services.students)),
       converter: (store) => StudentsViewModel.fromStore(store),
       builder: (context, viewModel) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Cadastro de Notas'),
+            title: const Text('Controle de alunos'),
             centerTitle: true,
           ),
           body: ListView.separated(
