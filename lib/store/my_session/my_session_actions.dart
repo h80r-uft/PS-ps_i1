@@ -2,7 +2,7 @@ import 'package:ps_i1/models/user.dart';
 import 'package:ps_i1/pages/pages.dart';
 import 'package:redux/redux.dart';
 import '../../models/user.dart';
-import '../../models/user_service.dart';
+import '../../services/user_service.dart';
 import '../app_state.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 

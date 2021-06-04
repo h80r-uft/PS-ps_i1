@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import '../models/user.dart';
 import '../models/teacher.dart';
 import '../models/student.dart';
-import '../models/user_service.dart';
+import '../services/user_service.dart';
 // import '../models/teacher_service.dart';
 // import '../models/student_service.dart';
 
