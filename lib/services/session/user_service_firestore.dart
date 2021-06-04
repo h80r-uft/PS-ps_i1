@@ -32,25 +32,28 @@ User fromDocumentSnapshot(DocumentSnapshot doc, String email, String password) {
 class UserServiceFirestore extends UserService {
   @override
   Future<User?> login(String email, String password) async {
-    firebaseAuth
-        .signInWithEmailAndPassword(email: email, password: password)
-        .then((userCredential) {
-      // Signed in
-      print("Logado!");
-      print(userCredential);
-      userCollection.doc(userCredential.user!.uid).get().then((doc) {
-        final user = fromDocumentSnapshot(doc, email, password);
-        //Encontrou
-        print("Encontrou doc");
-        return user;
-      }).catchError((error) {
+    try {
+      final userCredential = await firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      try {
+        final docSnapshot =
+            await userCollection.doc(userCredential.user!.uid).get();
+
+        return fromDocumentSnapshot(
+          docSnapshot,
+          email,
+          password,
+        );
+      } catch (error2) {
         print("Erro ao buscar documento: ");
-        print(error);
-      });
-    }).catchError((error) {
-      // Error
-      print(error.message);
-    });
+        print(error2);
+      }
+    } catch (error) {
+      print(error);
+    }
     return null;
   }
 
