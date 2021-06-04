@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:ps_i1/store/app_state.dart';
-import 'package:ps_i1/pages/login/login_view_model.dart';
+import 'package:ps_i1/pages/my_session/my_session_view_model.dart';
 
 class Input extends StatelessWidget {
   final bool isPassword;
@@ -51,8 +51,8 @@ class MySession extends StatelessWidget {
   Widget build(BuildContext context) {
     print("BEGGINING");
 
-    return StoreConnector<AppState, LoginViewModel>(
-      converter: (store) => LoginViewModel.fromStore(store),
+    return StoreConnector<AppState, MySessionViewModel>(
+      converter: (store) => MySessionViewModel.fromStore(store),
       builder: (context, viewModel) {
         return Scaffold(
           appBar: AppBar(

@@ -1,9 +1,9 @@
-import 'package:ps_i1/pages/login/login_view_model.dart';
+import 'package:ps_i1/pages/my_session/my_session_view_model.dart';
 
 /// O arquivo globals.dart guarda a viewModel para que a mesma
 /// possa ser utilizada em várias partes do código como global
 
-LoginViewModel viewModel = LoginViewModel(
+MySessionViewModel viewModel = MySessionViewModel(
   uid: "",
   uidError: "",
   email: "",
