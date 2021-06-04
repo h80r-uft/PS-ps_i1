@@ -15,9 +15,6 @@ class Student extends User {
       : super(
           name: user.name,
           uid: user.uid,
-          isTeacher: user.isTeacher,
-          email: user.email,
-          password: user.password,
         );
 
   Student copyFrom({
@@ -28,9 +25,6 @@ class Student extends User {
       User(
         name: name,
         uid: uid,
-        isTeacher: isTeacher,
-        email: email,
-        password: password,
       ),
       firstGrade: firstGrade ?? this.firstGrade,
       secondGrade: secondGrade ?? this.secondGrade,

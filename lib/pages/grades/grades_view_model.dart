@@ -43,15 +43,7 @@ class GradesViewModel {
   }
 
   factory GradesViewModel.fromStore(Store<AppState> store) {
-    final state = store.state.mySessionState;
-    final student = Student(
-      User(
-        email: state.email,
-        password: state.password,
-      ),
-      firstGrade: 0,
-      secondGrade: 0,
-    );
+    final student = store.state.mySessionState.user as Student;
 
     return GradesViewModel(
       name: student.name!,

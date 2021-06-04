@@ -75,8 +75,14 @@ void Function(Store<AppState>) saveThunk(UserService userService) {
 
     userService.login(state.email, state.password).then((user) {
       print("FIREBASE_LOGIN");
+      print('\nteste 1 ===================\n');
+      print(store.state.mySessionState.user?.name);
+      store.dispatch(SessionStart(user!));
+      print('\nteste 2 ===================\n');
+      print(store.state.mySessionState.user?.name);
       store.dispatch(LoadingAction(loading: false));
     }).onError((error, stackTrace) {
+      print('\nteste 3 ===================\n');
       store.dispatch(LoadingAction(
         loading: false,
         loadingError: error.toString(),
