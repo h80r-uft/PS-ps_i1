@@ -16,15 +16,15 @@ const db = FirebaseFirestore;
 
 final userCollection = FirebaseFirestore.instance.collection("users");
 
-User fromDocumentSnapshot(DocumentSnapshot doc) {
+User fromDocumentSnapshot(DocumentSnapshot doc, String email, String password) {
   final data = doc.data();
   if (data == null || data is! Map) throw "DocumentSnapshot data error!";
   return User(
     uid: doc.id,
     name: data['name'],
     isTeacher: data['isTeacher'],
-    email: "email",
-    password: "password",
+    email: email,
+    password: password,
   );
 }
 
@@ -38,7 +38,7 @@ class UserServiceFirestore extends UserService {
       print("Logado!");
       print(userCredential);
       userCollection.doc(userCredential.user!.uid).get().then((doc) {
-        final user = fromDocumentSnapshot(doc);
+        final user = fromDocumentSnapshot(doc, email, password);
         //Encontrou
         print("Encontrou doc");
         return user;
