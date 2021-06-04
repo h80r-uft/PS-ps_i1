@@ -13,6 +13,8 @@ class NavigationMiddleware extends MiddlewareClass<AppState> {
     final currentState = Keys.navigationKey.currentState;
     if (action is NavigateTo && currentState != null) {
       currentState.pushNamed(action.routeName);
+    } else if (action is NavigateReplace && currentState != null) {
+      currentState.pushReplacementNamed(action.routeName);
     } else if (action is NavigateBack && currentState != null) {
       currentState.pop();
     }

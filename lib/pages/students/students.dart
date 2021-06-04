@@ -17,9 +17,6 @@ class Students extends StatelessWidget {
         User(
           name: 'Hernandes Macedo',
           uid: '1',
-          email: 'djsiafa',
-          password: 'djsao',
-          isTeacher: false,
         ),
         firstGrade: 9,
         secondGrade: 9,
@@ -28,9 +25,6 @@ class Students extends StatelessWidget {
         User(
           name: 'Thaís Faustino',
           uid: '2',
-          email: 'djsiafa',
-          password: 'djsao',
-          isTeacher: false,
         ),
         firstGrade: 10,
         secondGrade: 10,
@@ -39,9 +33,6 @@ class Students extends StatelessWidget {
         User(
           name: 'Heitor Galdino',
           uid: '3',
-          email: 'djsiafa',
-          password: 'djsao',
-          isTeacher: false,
         ),
         firstGrade: 5,
         secondGrade: 5,
@@ -50,9 +41,6 @@ class Students extends StatelessWidget {
         User(
           name: 'Hernandes Macedo',
           uid: '1',
-          email: 'djsiafa',
-          password: 'djsao',
-          isTeacher: false,
         ),
         firstGrade: 9,
         secondGrade: 9,
@@ -61,9 +49,6 @@ class Students extends StatelessWidget {
         User(
           name: 'Thaís Faustino',
           uid: '2',
-          email: 'djsiafa',
-          password: 'djsao',
-          isTeacher: false,
         ),
         firstGrade: 10,
         secondGrade: 10,
@@ -72,9 +57,6 @@ class Students extends StatelessWidget {
         User(
           name: 'Heitor Galdino',
           uid: '3',
-          email: 'djsiafa',
-          password: 'djsao',
-          isTeacher: false,
         ),
         firstGrade: 5,
         secondGrade: 5,
@@ -83,9 +65,6 @@ class Students extends StatelessWidget {
         User(
           name: 'Hernandes Macedo',
           uid: '1',
-          email: 'djsiafa',
-          password: 'djsao',
-          isTeacher: false,
         ),
         firstGrade: 9,
         secondGrade: 9,
@@ -94,9 +73,6 @@ class Students extends StatelessWidget {
         User(
           name: 'Thaís Faustino',
           uid: '2',
-          email: 'djsiafa',
-          password: 'djsao',
-          isTeacher: false,
         ),
         firstGrade: 10,
         secondGrade: 10,
@@ -105,9 +81,6 @@ class Students extends StatelessWidget {
         User(
           name: 'Heitor Galdino',
           uid: '3',
-          email: 'djsiafa',
-          password: 'djsao',
-          isTeacher: false,
         ),
         firstGrade: 5,
         secondGrade: 5,

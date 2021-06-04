@@ -30,6 +30,9 @@ MySessionState mySessionReducer(MySessionState state, dynamic action) {
       password: null,
     );
   }
+  if (action is SessionStart) {
+    return state.copyWith(user: action.user);
+  }
   if (action is SessionEnd) {
     return MySessionState.initial();
   }

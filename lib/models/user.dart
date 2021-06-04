@@ -10,22 +10,8 @@ class User {
   /// do usuário.
   final String? uid;
 
-  /// Código de classificador
-  /// de usuário.
-  final bool? isTeacher;
-
-  /// Email de acesso
-  /// do usuário.
-  final String email;
-
-  /// Senha de acesso
-  /// do usuário.
-  final String password;
-
-  User(
-      {this.uid,
-      this.name,
-      this.isTeacher,
-      required this.email,
-      required this.password});
+  User({
+    this.uid,
+    this.name,
+  });
 }

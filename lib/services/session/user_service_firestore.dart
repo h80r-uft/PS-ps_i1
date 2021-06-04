@@ -1,6 +1,8 @@
 // Import the firebase_core and cloud_firestore plugin
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:ps_i1/models/student.dart';
+import 'package:ps_i1/models/teacher.dart';
 
 import 'package:ps_i1/models/user.dart';
 import 'package:ps_i1/services/session/user_service.dart';
@@ -13,38 +15,45 @@ final userCollection = FirebaseFirestore.instance.collection("users");
 
 User fromDocumentSnapshot(DocumentSnapshot doc, String email, String password) {
   final data = doc.data();
+
   if (data == null || data is! Map) throw "DocumentSnapshot data error!";
-  return User(
-    uid: doc.id,
-    name: data['name'],
-    isTeacher: data['isTeacher'],
-    email: email,
-    password: password,
-  );
+
+  final user = User(uid: doc.id, name: data['name']);
+
+  return data['isTeacher']
+      ? Teacher(user)
+      : Student(
+          user,
+          firstGrade: data['firstGrade'],
+          secondGrade: data['secondGrade'],
+        );
 }
 
 class UserServiceFirestore extends UserService {
   @override
   Future<User?> login(String email, String password) async {
-    firebaseAuth
-        .signInWithEmailAndPassword(email: email, password: password)
-        .then((userCredential) {
-      // Signed in
-      print("Logado!");
-      print(userCredential);
-      userCollection.doc(userCredential.user!.uid).get().then((doc) {
-        final user = fromDocumentSnapshot(doc, email, password);
-        //Encontrou
-        print("Encontrou doc");
-        return user;
-      }).catchError((error) {
+    try {
+      final userCredential = await firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      try {
+        final docSnapshot =
+            await userCollection.doc(userCredential.user!.uid).get();
+
+        return fromDocumentSnapshot(
+          docSnapshot,
+          email,
+          password,
+        );
+      } catch (error2) {
         print("Erro ao buscar documento: ");
-        print(error);
-      });
-    }).catchError((error) {
-      // Error
-      print(error.message);
-    });
+        print(error2);
+      }
+    } catch (error) {
+      print(error);
+    }
     return null;
   }
 
@@ -52,9 +61,9 @@ class UserServiceFirestore extends UserService {
   Future<void> logout(User user) async {
     firebaseAuth.signOut().then((user) {
       print("saiu");
-    }).catchError((Error) {
+    }).catchError((error) {
       print("erro ao sair");
-      print(Error);
+      print(error);
     });
   }
 }

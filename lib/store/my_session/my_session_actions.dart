@@ -1,3 +1,5 @@
+import 'package:ps_i1/middlewares/navigation/navigation_actions.dart';
+import 'package:ps_i1/models/student.dart';
 import 'package:redux/redux.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
@@ -67,14 +69,16 @@ class LoadingAction {
 }
 
 void Function(Store<AppState>) saveThunk(UserService userService) {
-  print("SAVETHUNK");
   return (Store<AppState> store) {
     store.dispatch(LoadingAction(loading: true));
 
     final state = store.state.mySessionState;
 
     userService.login(state.email, state.password).then((user) {
-      print("FIREBASE_LOGIN");
+      store.dispatch(SessionStart(user!));
+      store.dispatch(NavigateReplace(
+        user is Student ? '/grade' : '/new_student',
+      ));
       store.dispatch(LoadingAction(loading: false));
     }).onError((error, stackTrace) {
       store.dispatch(LoadingAction(
