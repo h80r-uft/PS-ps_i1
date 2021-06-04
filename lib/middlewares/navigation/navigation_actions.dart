@@ -6,6 +6,11 @@ class NavigateTo {
   NavigateTo(this.routeName);
 }
 
+class NavigateReplace {
+  final String routeName;
+  NavigateReplace(this.routeName);
+}
+
 /// Retorna à posição anterior
 /// nas rotas do aplicativo.
 class NavigateBack {}

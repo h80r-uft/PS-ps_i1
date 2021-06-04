@@ -61,9 +61,9 @@ class UserServiceFirestore extends UserService {
   Future<void> logout(User user) async {
     firebaseAuth.signOut().then((user) {
       print("saiu");
-    }).catchError((Error) {
+    }).catchError((error) {
       print("erro ao sair");
-      print(Error);
+      print(error);
     });
   }
 }

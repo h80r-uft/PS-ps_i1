@@ -64,10 +64,16 @@ class MyNewApp extends StatelessWidget {
         initialRoute: "/",
         routes: {
           "/": (context) {
-            return pages.MySession();
+            return const pages.MySession();
           },
           "/login": (context) {
-            return pages.MySession();
+            return const pages.MySession();
+          },
+          "/new_student": (context) {
+            return const pages.NewUser();
+          },
+          "/grade": (context) {
+            return const pages.Grades();
           }
         },
       ),
