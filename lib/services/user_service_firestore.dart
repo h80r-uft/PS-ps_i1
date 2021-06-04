@@ -31,8 +31,6 @@ User fromDocumentSnapshot(DocumentSnapshot doc) {
 class UserServiceFirestore extends UserService {
   @override
   Future<User?> login(String email, String password) async {
-    print("email:: " + email);
-    print("passw:: " + password);
     firebaseAuth
         .signInWithEmailAndPassword(email: email, password: password)
         .then((userCredential) {
@@ -40,7 +38,7 @@ class UserServiceFirestore extends UserService {
       print("Logado!");
       print(userCredential);
       userCollection.doc(userCredential.user!.uid).get().then((doc) {
-        User user = fromDocumentSnapshot(doc);
+        final user = fromDocumentSnapshot(doc);
         //Encontrou
         print("Encontrou doc");
         return user;

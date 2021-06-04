@@ -3,6 +3,7 @@ import 'package:ps_i1/pages/responsive.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:ps_i1/store/app_state.dart';
 import 'package:ps_i1/pages/login/login_view_model.dart';
+import 'package:ps_i1/globals.dart' as globals;
 
 class MySession extends StatefulWidget {
   @override
@@ -95,7 +96,11 @@ class _MySessionState extends State<MySession> {
                               password.isNotEmpty &&
                               emailValid) {
                             print("LOGIN, PASSW AND EMAIL VALID");
-                            viewModel.onLoad(login, password);
+
+                            /// O arquivo globals.dart guarda a viewModel para que
+                            /// a mesma possa ser utilizada em várias partes do código
+                            globals.viewModel = viewModel;
+                            viewModel.onLoad!(login, password);
                             print("ONLOAD FINISHED");
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -127,6 +132,7 @@ class _MySessionState extends State<MySession> {
         child: TextFormField(
           controller: controller,
           keyboardType: TextInputType.emailAddress,
+          onChanged: globals.viewModel.onEmailChanged,
           style: TextStyle(color: Colors.black, fontSize: 18),
           decoration: InputDecoration(
             contentPadding: EdgeInsets.only(left: 5, bottom: 10),
@@ -151,6 +157,7 @@ class _MySessionState extends State<MySession> {
             color: Colors.white, borderRadius: BorderRadius.circular(8)),
         child: TextFormField(
           controller: controller,
+          onChanged: globals.viewModel.onPasswordChanged,
 
           /// responsavel por obscurecer ou exibir a senha digitada
           obscureText: !_showPassword,

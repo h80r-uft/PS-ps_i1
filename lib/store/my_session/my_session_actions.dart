@@ -35,6 +35,15 @@ class PasswordChange {
   PasswordChange(this.password);
 }
 
+/// Ação de atualização do tipo de user.
+///
+/// Atualiza o estado de [MySession]
+/// através do [isTeacher] armazenada.
+class IsTeacherChange {
+  final bool isTeacher;
+  IsTeacherChange(this.isTeacher);
+}
+
 /// Ação de inicio de sessão.
 ///
 /// Atualiza o estado de [MySession]
@@ -75,8 +84,6 @@ class LoadingAction {
 void Function(Store<AppState>) saveThunk(
     UserService userService, String email, String password) {
   print("SAVETHUNK");
-  print("email: " + email);
-  print("passw: " + password);
   return (Store<AppState> store) {
     store.dispatch(LoadingAction(loading: true));
 
@@ -87,6 +94,7 @@ void Function(Store<AppState>) saveThunk(
       email: store.state.mySessionState.email,
       password: store.state.mySessionState.password,
     );
+    print("user.email: " + user.email);
     userService.login(email, password).then((user) {
       print("FIREBASE_LOGIN");
       store.dispatch(LoadingAction(loading: false));

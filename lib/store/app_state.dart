@@ -40,9 +40,12 @@ class AppState {
 
   /// Gerador do estado inicial
   /// da aplicação.
-  AppState.inital()
-      : mySessionState = MySessionState.initial(),
-        studentsState = StudentsState.initial(),
-        addStudentState = AddStudentState.initial(),
-        editStudentState = EditStudentState.initial();
+  factory AppState.inital() {
+    return AppState(
+      mySessionState: MySessionState.initial(),
+      studentsState: StudentsState.initial(),
+      addStudentState: AddStudentState.initial(),
+      editStudentState: EditStudentState.initial(),
+    );
+  }
 }

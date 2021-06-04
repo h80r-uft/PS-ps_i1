@@ -18,10 +18,11 @@ class LoginViewModel {
   final bool loading;
   final String? loadingError;
 
-  final void Function(String) onUidChanged;
-  final void Function(String) onEmailChanged;
-  final void Function(String) onPasswordChanged;
-  final void Function(String, String) onLoad;
+  final void Function(String)? onUidChanged;
+  final void Function(String)? onEmailChanged;
+  final void Function(String)? onPasswordChanged;
+  final void Function(bool)? onIsTeacherChanged;
+  final void Function(String, String)? onLoad;
 
   LoginViewModel({
     required this.uid,
@@ -34,10 +35,11 @@ class LoginViewModel {
     required this.isTeacherError,
     required this.loading,
     required this.loadingError,
-    required this.onUidChanged,
-    required this.onEmailChanged,
-    required this.onPasswordChanged,
-    required this.onLoad,
+    this.onUidChanged,
+    this.onEmailChanged,
+    this.onPasswordChanged,
+    this.onIsTeacherChanged,
+    this.onLoad,
   });
 
   factory LoginViewModel.fromStore(Store<AppState> store) {
@@ -56,7 +58,9 @@ class LoginViewModel {
       onUidChanged: (String uid) => store.dispatch(UidChange(uid)),
       onEmailChanged: (String email) => store.dispatch(EmailChange(email)),
       onPasswordChanged: (String password) =>
-          store.dispatch(EmailChange(password)),
+          store.dispatch(PasswordChange(password)),
+      onIsTeacherChanged: (bool isTeacher) =>
+          store.dispatch(IsTeacherChange(isTeacher)),
       onLoad: (String login, String password) =>
           store.dispatch(saveThunk(Services.users, login, password)),
     );

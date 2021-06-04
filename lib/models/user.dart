@@ -23,9 +23,9 @@ class User {
   final String password;
 
   User(
-      {required this.uid,
-      required this.name,
-      required this.isTeacher,
+      {this.uid,
+      this.name,
+      this.isTeacher,
       required this.email,
       required this.password});
 }
