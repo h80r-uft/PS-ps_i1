@@ -11,15 +11,6 @@ import 'package:ps_i1/store/app_state.dart';
 
 firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
 
-/// Ação de atualização no uid.
-///
-/// Atualiza o estado de [MySession]
-/// através do [uid] armazenado.
-class UidChange {
-  final String uid;
-  UidChange(this.uid);
-}
-
 /// Ação de atualização no email.
 ///
 /// Atualiza o estado de [MySession]
@@ -36,15 +27,6 @@ class EmailChange {
 class PasswordChange {
   final String password;
   PasswordChange(this.password);
-}
-
-/// Ação de atualização do tipo de user.
-///
-/// Atualiza o estado de [MySession]
-/// através do [isTeacher] armazenada.
-class IsTeacherChange {
-  final bool isTeacher;
-  IsTeacherChange(this.isTeacher);
 }
 
 /// Ação de inicio de sessão.
@@ -84,21 +66,14 @@ class LoadingAction {
   });
 }
 
-void Function(Store<AppState>) saveThunk(
-    UserService userService, String email, String password) {
+void Function(Store<AppState>) saveThunk(UserService userService) {
   print("SAVETHUNK");
   return (Store<AppState> store) {
     store.dispatch(LoadingAction(loading: true));
 
-    final user = User(
-      uid: store.state.mySessionState.uid,
-      name: store.state.mySessionState.name,
-      isTeacher: store.state.mySessionState.isTeacher,
-      email: store.state.mySessionState.email,
-      password: store.state.mySessionState.password,
-    );
-    print("user.email: " + user.email);
-    userService.login(email, password).then((user) {
+    final state = store.state.mySessionState;
+
+    userService.login(state.email, state.password).then((user) {
       print("FIREBASE_LOGIN");
       store.dispatch(LoadingAction(loading: false));
     }).onError((error, stackTrace) {

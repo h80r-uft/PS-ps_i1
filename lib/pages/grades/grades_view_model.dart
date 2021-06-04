@@ -48,9 +48,6 @@ class GradesViewModel {
       User(
         email: state.email,
         password: state.password,
-        isTeacher: state.isTeacher,
-        name: state.name,
-        uid: state.uid,
       ),
       firstGrade: 0,
       secondGrade: 0,

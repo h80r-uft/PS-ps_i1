@@ -1,17 +1,9 @@
+import 'package:ps_i1/models/user.dart';
+
 /// Estado atual da sessão.
 class MySessionState {
-  /// Numero dentificador
-  /// do usuario
-  final String uid;
-  final String? uidError;
-
   /// Nome completo do usuário.
-  final String name;
-  final String? nameError;
-
-  /// Classificador de tipo de usuário
-  final bool isTeacher;
-  final String? isTeacherError;
+  final User? user;
 
   /// Email do usuário que
   /// deseja fazer login.
@@ -52,16 +44,11 @@ class MySessionState {
   /// Gerador de estado da
   /// sessão do usuário.
   const MySessionState({
-    required this.uid,
-    this.uidError,
-    required this.name,
-    this.nameError,
+    required this.user,
     required this.email,
     this.emailError,
     required this.password,
     this.passwordError,
-    required this.isTeacher,
-    this.isTeacherError,
     required this.loading,
     this.loadingError,
   });
@@ -70,9 +57,7 @@ class MySessionState {
   /// para a sessão do usuário.
   factory MySessionState.initial() {
     return const MySessionState(
-      uid: "",
-      name: "",
-      isTeacher: false,
+      user: null,
       email: "",
       password: "",
       loading: false,
@@ -84,30 +69,20 @@ class MySessionState {
   /// e os atributos que se deseja
   /// modificar.
   copyWith({
-    String? uid,
-    String? uidError,
-    String? name,
-    String? nameError,
+    User? user,
     String? email,
     String? emailError,
     String? password,
     String? passwordError,
-    bool? isTeacher,
-    String? isTeacherError,
     bool? loading,
     String? loadingError,
   }) {
     return MySessionState(
-      uid: uid ?? this.uid,
-      uidError: uidError ?? this.uidError,
-      name: name ?? this.name,
-      nameError: nameError ?? this.nameError,
+      user: user ?? this.user,
       email: email ?? this.email,
       emailError: emailError ?? this.emailError,
       password: password ?? this.password,
       passwordError: passwordError ?? this.passwordError,
-      isTeacher: isTeacher ?? this.isTeacher,
-      isTeacherError: isTeacherError ?? this.isTeacherError,
       loading: loading ?? this.loading,
       loadingError: loadingError ?? this.loadingError,
     );
