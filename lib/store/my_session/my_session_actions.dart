@@ -1,10 +1,13 @@
-import 'package:ps_i1/models/user.dart';
-import 'package:ps_i1/pages/pages.dart';
 import 'package:redux/redux.dart';
-import '../../models/user.dart';
-import '../../models/user_service.dart';
-import '../app_state.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+
+import 'package:ps_i1/models/user.dart';
+
+import 'package:ps_i1/pages/pages.dart';
+
+import 'package:ps_i1/services/session/user_service.dart';
+
+import 'package:ps_i1/store/app_state.dart';
 
 firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
 

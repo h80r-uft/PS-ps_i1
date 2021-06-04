@@ -1,7 +1,3 @@
-import 'package:flutter/foundation.dart';
-
-@immutable
-
 /// Estado atual da sessão.
 class MySessionState {
   /// Numero dentificador

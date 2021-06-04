@@ -1,7 +1,6 @@
 import 'package:redux/redux.dart';
 
 import 'package:ps_i1/store/add_student/add_student_actions.dart';
-
 import 'package:ps_i1/store/app_state.dart';
 
 class NewUserViewModel {

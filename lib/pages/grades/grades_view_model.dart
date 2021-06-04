@@ -1,8 +1,9 @@
+import 'package:redux/redux.dart';
 import 'package:flutter/material.dart';
+
 import 'package:ps_i1/models/student.dart';
 import 'package:ps_i1/models/user.dart';
 import 'package:ps_i1/store/app_state.dart';
-import 'package:redux/redux.dart';
 
 class GradesViewModel {
   final String name;
