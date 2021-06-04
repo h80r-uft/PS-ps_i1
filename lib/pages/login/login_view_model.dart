@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:redux/redux.dart';
 
 import 'package:ps_i1/services/services.dart';
@@ -19,7 +21,7 @@ class LoginViewModel {
   final void Function(String) onUidChanged;
   final void Function(String) onEmailChanged;
   final void Function(String) onPasswordChanged;
-  final void Function() onLoad;
+  final void Function(String, String) onLoad;
 
   LoginViewModel({
     required this.uid,
@@ -39,6 +41,7 @@ class LoginViewModel {
   });
 
   factory LoginViewModel.fromStore(Store<AppState> store) {
+    print("FACTORY LoginViewModel");
     return LoginViewModel(
       uid: store.state.mySessionState.uid,
       uidError: store.state.mySessionState.uidError,
@@ -54,8 +57,8 @@ class LoginViewModel {
       onEmailChanged: (String email) => store.dispatch(EmailChange(email)),
       onPasswordChanged: (String password) =>
           store.dispatch(EmailChange(password)),
-      onLoad: () =>
-          store.dispatch(saveThunk(Services.users, "email", "password")),
+      onLoad: (String login, String password) =>
+          store.dispatch(saveThunk(Services.users, login, password)),
     );
   }
 }

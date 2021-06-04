@@ -72,6 +72,7 @@ class LoadingAction {
 
 void Function(Store<AppState>) saveThunk(
     UserService userService, String email, String password) {
+  print("SAVETHUNK");
   return (Store<AppState> store) {
     store.dispatch(LoadingAction(loading: true));
 
@@ -82,7 +83,8 @@ void Function(Store<AppState>) saveThunk(
       email: store.state.mySessionState.email,
       password: store.state.mySessionState.password,
     );
-    userService.login(email, password).then((value) {
+    userService.login(user.email, user.password).then((user) {
+      print("FIREBASE_LOGIN");
       store.dispatch(LoadingAction(loading: false));
     }).onError((error, stackTrace) {
       store.dispatch(LoadingAction(

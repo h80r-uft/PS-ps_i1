@@ -16,11 +16,11 @@ class User {
 
   /// Email de acesso
   /// do usuário.
-  final String? email;
+  final String email;
 
   /// Senha de acesso
   /// do usuário.
-  final String? password;
+  final String password;
 
   User(
       {required this.uid,

@@ -87,7 +87,7 @@ class MySessionState {
   /// de um [MySessionState] original
   /// e os atributos que se deseja
   /// modificar.
-  MySessionState copyWith({
+  copyWith({
     String? uid,
     String? uidError,
     String? name,
