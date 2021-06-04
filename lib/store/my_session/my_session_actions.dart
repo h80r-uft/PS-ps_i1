@@ -4,7 +4,9 @@ import 'package:redux/redux.dart';
 import '../../models/user.dart';
 import '../../models/user_service.dart';
 import '../app_state.dart';
-// import 'package:ps_i1/middlewares/navigation/navigation_actions.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+
+firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
 
 /// Ação de atualização no uid.
 ///
@@ -73,6 +75,8 @@ class LoadingAction {
 void Function(Store<AppState>) saveThunk(
     UserService userService, String email, String password) {
   print("SAVETHUNK");
+  print("email: " + email);
+  print("passw: " + password);
   return (Store<AppState> store) {
     store.dispatch(LoadingAction(loading: true));
 
@@ -83,7 +87,7 @@ void Function(Store<AppState>) saveThunk(
       email: store.state.mySessionState.email,
       password: store.state.mySessionState.password,
     );
-    userService.login(user.email, user.password).then((user) {
+    userService.login(email, password).then((user) {
       print("FIREBASE_LOGIN");
       store.dispatch(LoadingAction(loading: false));
     }).onError((error, stackTrace) {

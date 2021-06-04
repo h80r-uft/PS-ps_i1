@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ps_i1/pages/responsive.dart';
-import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter_redux/flutter_redux.dart';
-
-import 'package:ps_i1/components/loading/loading.dart';
 import 'package:ps_i1/store/app_state.dart';
 import 'package:ps_i1/pages/login/login_view_model.dart';
-//import 'styles.dart';
-
-firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
 
 class MySession extends StatefulWidget {
   @override
@@ -100,7 +94,6 @@ class _MySessionState extends State<MySession> {
                           if (login.isNotEmpty &&
                               password.isNotEmpty &&
                               emailValid) {
-                            //signIn(context, login, password);
                             print("LOGIN, PASSW AND EMAIL VALID");
                             viewModel.onLoad(login, password);
                             print("ONLOAD FINISHED");
@@ -188,23 +181,6 @@ class _MySessionState extends State<MySession> {
       ),
     );
   }
-}
-
-/// A função signIn loga um(a) usuário(a) no sistema, com base nos dados do Firestone
-void signIn(BuildContext context, login, senha) async {
-  firebaseAuth
-      .signInWithEmailAndPassword(email: login, password: senha)
-      .then((userCredential) {
-    // Signed in
-    showAlertDialog(context, "LOGADO!", login);
-    print(" ------------------------------------");
-    print(userCredential.user!.uid);
-    print(" ------------------------------------");
-  }).catchError((error) {
-    showAlertDialog(context, "NÃO LOGADO!", "error");
-    print(error);
-    print("O login não foi concluído :(");
-  });
 }
 
 // A função abaixo não está funcionado por razões desconhecidas!
