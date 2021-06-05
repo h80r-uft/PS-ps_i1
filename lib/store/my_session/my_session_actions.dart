@@ -31,6 +31,8 @@ class PasswordChange {
   PasswordChange(this.password);
 }
 
+class Obscure {}
+
 /// Ação de inicio de sessão.
 ///
 /// Atualiza o estado de [MySession]
