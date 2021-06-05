@@ -44,12 +44,12 @@ class GradesViewModel {
   }
 
   factory GradesViewModel.fromStore(Store<AppState> store) {
-    final student = store.state.mySessionState.user as Student;
+    final student = store.state.mySessionState.user as Student?;
 
     return GradesViewModel(
-      name: student.name!.split(' ').first,
-      firstGrade: student.firstGrade,
-      secondGrade: student.secondGrade,
+      name: student?.name?.split(' ').first ?? '',
+      firstGrade: student?.firstGrade ?? 0,
+      secondGrade: student?.secondGrade ?? 0,
       onExit: () => store.dispatch(logoutThunk(Services.users)),
     );
   }
