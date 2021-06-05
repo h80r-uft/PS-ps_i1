@@ -70,9 +70,13 @@ void Function(Store<AppState>) saveThunk(StudentsService studentsService) {
   return (Store<AppState> store) {
     store.dispatch(Saving(saving: true));
 
-    studentsService
-        .saveStudent(store.state.studentsState.editedStudent!)
-        .then((_) {
+    final state = store.state.studentsState;
+    final student = state.editedStudent!.copyFrom(
+      firstGrade: double.tryParse(state.firstGrade!) ?? 0.0,
+      secondGrade: double.tryParse(state.secondGrade!) ?? 0.0,
+    );
+
+    studentsService.saveStudent(student).then((_) {
       loadThunk(studentsService);
       store.dispatch(Saving(saving: false));
     }).onError((error, stackTrace) {

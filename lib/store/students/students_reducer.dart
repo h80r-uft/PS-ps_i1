@@ -26,19 +26,13 @@ StudentsState studentsReducer(StudentsState state, dynamic action) {
     );
   }
   if (action is FirstGradeChange) {
-    final currentStudent = state.editedStudent!;
-    final grade = double.tryParse(action.grade) ?? 0.0;
-
     return state.copyWith(
-      editedStudent: currentStudent.copyFrom(firstGrade: grade),
+      firstGrade: action.grade,
     );
   }
   if (action is SecondGradeChange) {
-    final currentStudent = state.editedStudent!;
-    final grade = double.tryParse(action.grade) ?? 0.0;
-
     return state.copyWith(
-      editedStudent: currentStudent.copyFrom(secondGrade: grade),
+      secondGrade: action.grade,
     );
   }
   if (action is Saving) {

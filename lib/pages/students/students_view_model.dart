@@ -17,6 +17,8 @@ class StudentsViewModel {
 
   final bool isEditing;
   final Student? editedStudent;
+  final String? firstGrade;
+  final String? secondGrade;
 
   final void Function(String) onFirstGradeChange;
   final void Function(String) onSecondGradeChange;
@@ -33,6 +35,8 @@ class StudentsViewModel {
     required this.onTapItem,
     required this.isEditing,
     required this.editedStudent,
+    required this.firstGrade,
+    required this.secondGrade,
     required this.onFirstGradeChange,
     required this.onSecondGradeChange,
     required this.onSave,
@@ -50,6 +54,10 @@ class StudentsViewModel {
       onTapItem: (int index) => store.dispatch(OnTapItem(index: index)),
       isEditing: state.isEditing,
       editedStudent: state.editedStudent,
+      firstGrade:
+          state.firstGrade ?? state.editedStudent?.firstGrade.toString(),
+      secondGrade:
+          state.secondGrade ?? state.editedStudent?.secondGrade.toString(),
       onFirstGradeChange: (String grade) =>
           store.dispatch(FirstGradeChange(grade: grade)),
       onSecondGradeChange: (String grade) =>

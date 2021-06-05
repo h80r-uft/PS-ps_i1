@@ -54,8 +54,9 @@ class Students extends StatelessWidget {
                         ),
                       ),
                       TextFormField(
-                        key:
-                            Key(viewModel.editedStudent!.firstGrade.toString()),
+                        key: Key(
+                            viewModel.editedStudent!.firstGrade.toString() +
+                                'fg'),
                         initialValue:
                             viewModel.editedStudent!.firstGrade.toString(),
                         decoration: const InputDecoration(
@@ -65,7 +66,8 @@ class Students extends StatelessWidget {
                       ),
                       TextFormField(
                         key: Key(
-                            viewModel.editedStudent!.secondGrade.toString()),
+                            viewModel.editedStudent!.secondGrade.toString() +
+                                'sg'),
                         initialValue:
                             viewModel.editedStudent!.secondGrade.toString(),
                         decoration: const InputDecoration(
