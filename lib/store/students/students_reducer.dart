@@ -20,9 +20,12 @@ StudentsState studentsReducer(StudentsState state, dynamic action) {
     );
   }
   if (action is OnTapItem) {
+    final student = state.students[action.index];
     return state.copyWith(
       isEditing: true,
-      editedStudent: state.students[action.index],
+      firstGrade: student.firstGrade.toString(),
+      secondGrade: student.secondGrade.toString(),
+      editedStudent: student,
     );
   }
   if (action is FirstGradeChange) {

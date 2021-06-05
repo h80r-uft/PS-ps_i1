@@ -1,3 +1,5 @@
+import 'package:ps_i1/services/services.dart';
+import 'package:ps_i1/store/my_session/my_session_actions.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter/material.dart';
 
@@ -42,13 +44,13 @@ class GradesViewModel {
   }
 
   factory GradesViewModel.fromStore(Store<AppState> store) {
-    final student = store.state.mySessionState.user as Student;
+    final student = store.state.mySessionState.user as Student?;
 
     return GradesViewModel(
-      name: student.name,
-      firstGrade: student.firstGrade,
-      secondGrade: student.secondGrade,
-      onExit: () {},
+      name: student?.name.split(' ').first ?? '',
+      firstGrade: student?.firstGrade ?? 0,
+      secondGrade: student?.secondGrade ?? 0,
+      onExit: () => store.dispatch(logoutThunk(Services.users)),
     );
   }
 }

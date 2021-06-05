@@ -73,8 +73,8 @@ void Function(Store<AppState>) saveThunk(StudentsService studentsService) {
 
     final state = store.state.studentsState;
     final student = state.editedStudent!.copyFrom(
-      firstGrade: double.tryParse(state.firstGrade!) ?? 0.0,
-      secondGrade: double.tryParse(state.secondGrade!) ?? 0.0,
+      firstGrade: double.tryParse(state.firstGrade ?? '') ?? 0.0,
+      secondGrade: double.tryParse(state.secondGrade ?? '') ?? 0.0,
     );
 
     studentsService.saveStudent(student).then((_) async {
