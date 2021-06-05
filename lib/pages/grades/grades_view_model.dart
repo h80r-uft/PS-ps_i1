@@ -1,3 +1,5 @@
+import 'package:ps_i1/services/services.dart';
+import 'package:ps_i1/store/my_session/my_session_actions.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter/material.dart';
 
@@ -48,9 +50,7 @@ class GradesViewModel {
       name: student.name!.split(' ').first,
       firstGrade: student.firstGrade,
       secondGrade: student.secondGrade,
-      onExit: () {
-        print('Deseja sair');
-      },
+      onExit: () => store.dispatch(logoutThunk(Services.users)),
     );
   }
 }
