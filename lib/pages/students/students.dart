@@ -30,7 +30,7 @@ class Students extends StatelessWidget {
               title: StudentItem(
                 size: MediaQuery.of(context).size,
                 fullName: viewModel.students[index].name,
-                status: Random().nextInt(3),
+                status: viewModel.students[index].state,
               ),
             ),
             itemCount: viewModel.students.length,
