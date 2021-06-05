@@ -13,7 +13,7 @@ const db = FirebaseFirestore;
 
 final userCollection = FirebaseFirestore.instance.collection("users");
 
-User fromDocumentSnapshot(DocumentSnapshot doc, String email, String password) {
+User fromDocumentSnapshot(DocumentSnapshot doc) {
   final data = doc.data();
 
   if (data == null || data is! Map) throw "DocumentSnapshot data error!";
@@ -42,11 +42,7 @@ class UserServiceFirestore extends UserService {
         final docSnapshot =
             await userCollection.doc(userCredential.user!.uid).get();
 
-        return fromDocumentSnapshot(
-          docSnapshot,
-          email,
-          password,
-        );
+        return fromDocumentSnapshot(docSnapshot);
       } catch (error2) {
         print("Erro ao buscar documento: ");
         print(error2);

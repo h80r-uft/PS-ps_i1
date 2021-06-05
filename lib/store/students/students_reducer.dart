@@ -14,6 +14,11 @@ StudentsState studentsReducer(StudentsState state, dynamic action) {
       loadingError: action.loadingError,
     );
   }
+  if (action is OnStudentsChange) {
+    return state.copyWith(
+      students: action.students,
+    );
+  }
   if (action is OnTapItem) {
     return state.copyWith(
       isEditing: true,
@@ -21,23 +26,19 @@ StudentsState studentsReducer(StudentsState state, dynamic action) {
     );
   }
   if (action is FirstGradeChange) {
-    final currentStudent = state.editedStudent!;
-    final grade = double.tryParse(action.grade) ?? 0.0;
-
     return state.copyWith(
-      editedStudent: currentStudent.copyFrom(firstGrade: grade),
+      firstGrade: action.grade,
     );
   }
   if (action is SecondGradeChange) {
-    final currentStudent = state.editedStudent!;
-    final grade = double.tryParse(action.grade) ?? 0.0;
-
     return state.copyWith(
-      editedStudent: currentStudent.copyFrom(secondGrade: grade),
+      secondGrade: action.grade,
     );
   }
   if (action is Saving) {
     return state.copyWith(
+      editedStudent: null,
+      isEditing: false,
       saving: action.saving,
       savingError: action.savingError,
     );

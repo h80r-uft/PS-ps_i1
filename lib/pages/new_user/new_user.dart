@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:ps_i1/pages/new_user/new_user_view_model.dart';
+import 'package:ps_i1/store/app_state.dart';
 
 class MyInput extends StatelessWidget {
   final String? label;
   final String? hint;
   final bool isPassword;
+  final Function(String)? onChanged;
 
   const MyInput({
     Key? key,
     required this.label,
     this.hint,
     this.isPassword = false,
+    required this.onChanged,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: onChanged,
       decoration: InputDecoration(
         hintText: hint,
         labelText: label,
@@ -30,59 +36,68 @@ class NewUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Cadastrar novo usuário"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          child: ListView(
-            children: <Widget>[
-              const MyInput(
-                label: 'Nome',
-                hint: 'Informe o nome',
-                isPassword: false,
-              ),
-              const MyInput(
-                label: 'E-Mail',
-                hint: 'Informe o e-mail',
-                isPassword: false,
-              ),
-              const MyInput(
-                label: 'Senha',
-                hint: 'Informe a senha',
-                isPassword: true,
-              ),
-              const MyInput(
-                label: 'Confirmação',
-                hint: 'Confirme a senha',
-                isPassword: true,
-              ),
-              Container(
-                height: 40.0,
-                margin: const EdgeInsets.only(top: 10.0),
-                child: OutlinedButton(
-                  child: const Text(
-                    "Criar cadastro",
-                  ),
-                  onPressed: () {},
-                ),
-              ),
-              Container(
-                height: 40.0,
-                margin: const EdgeInsets.only(top: 10.0),
-                child: OutlinedButton(
-                  child: const Text(
-                    "Lista de alunos",
-                  ),
-                  onPressed: () {},
-                ),
-              ),
-            ],
+    return StoreConnector<AppState, NewUserViewModel>(
+      converter: (store) => NewUserViewModel.fromStore(store),
+      builder: (context, viewModel) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text("Cadastrar novo usuário"),
           ),
-        ),
-      ),
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Form(
+              child: ListView(
+                children: <Widget>[
+                  MyInput(
+                    label: 'Nome',
+                    hint: 'Informe o nome',
+                    isPassword: false,
+                    onChanged: viewModel.onNameChange,
+                  ),
+                  MyInput(
+                    label: 'E-Mail',
+                    hint: 'Informe o e-mail',
+                    isPassword: false,
+                    onChanged: viewModel.onEmailChange,
+                  ),
+                  MyInput(
+                    label: 'Senha',
+                    hint: 'Informe a senha',
+                    isPassword: true,
+                    onChanged: viewModel.onPasswordChange,
+                  ),
+                  MyInput(
+                    label: 'Confirmação',
+                    hint: 'Confirme a senha',
+                    isPassword: true,
+                    onChanged: viewModel.onConfirmPasswordChange,
+                  ),
+                  Container(
+                    height: 40.0,
+                    margin: const EdgeInsets.only(top: 10.0),
+                    child: OutlinedButton(
+                      child: const Text(
+                        "Criar cadastro",
+                      ),
+                      onPressed: viewModel.onRegister,
+                    ),
+                  ),
+                  Container(
+                    height: 40.0,
+                    margin: const EdgeInsets.only(top: 10.0),
+                    child: OutlinedButton(
+                      child: const Text(
+                        "Lista de alunos",
+                      ),
+                      onPressed: viewModel.onSelectList,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

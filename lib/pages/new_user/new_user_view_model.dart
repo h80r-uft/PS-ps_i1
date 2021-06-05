@@ -1,3 +1,4 @@
+import 'package:ps_i1/middlewares/navigation/navigation_actions.dart';
 import 'package:redux/redux.dart';
 
 import 'package:ps_i1/store/add_student/add_student_actions.dart';
@@ -55,7 +56,7 @@ class NewUserViewModel {
       onRegister: () {},
       registering: state.registering,
       registeringError: state.registeringError,
-      onSelectList: () {},
+      onSelectList: () => store.dispatch(NavigateTo('/students')),
     );
   }
 }

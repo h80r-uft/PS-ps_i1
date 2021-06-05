@@ -4,14 +4,14 @@
 /// o nome e o código único do usuário.
 class User {
   /// Nome completo do usuário.
-  final String? name;
+  final String name;
 
   /// Código de identificação único
   /// do usuário.
-  final String? uid;
+  final String uid;
 
   User({
-    this.uid,
-    this.name,
+    required this.uid,
+    required this.name,
   });
 }
