@@ -1,3 +1,4 @@
+import 'package:ps_i1/middlewares/navigation/navigation_actions.dart';
 import 'package:ps_i1/models/student.dart';
 import 'package:ps_i1/services/students/students_service.dart';
 import 'package:ps_i1/store/app_state.dart';
@@ -76,9 +77,10 @@ void Function(Store<AppState>) saveThunk(StudentsService studentsService) {
       secondGrade: double.tryParse(state.secondGrade!) ?? 0.0,
     );
 
-    studentsService.saveStudent(student).then((_) {
-      loadThunk(studentsService);
+    studentsService.saveStudent(student).then((_) async {
       store.dispatch(Saving(saving: false));
+      await Future.delayed(const Duration(milliseconds: 100));
+      store.dispatch(NavigateReplace('/students'));
     }).onError((error, stackTrace) {
       store.dispatch(Saving(
         saving: false,
