@@ -78,13 +78,11 @@ void Function(Store<AppState>) saveThunk(AddStudentService addStudentService) {
         .register(state.name, state.email, state.password)
         .then((value) {
       store.dispatch(Registering(registering: false));
-      print("Registrado!");
     }).onError((error, stackTrace) {
       store.dispatch(Registering(
         registering: false,
         registeringError: error.toString(),
       ));
-      print("Erro ao registrar!");
     });
   };
 }

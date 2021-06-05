@@ -1,4 +1,6 @@
 // Import the firebase_core and cloud_firestore plugin
+import 'dart:html';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:ps_i1/services/add_student/add_student_service.dart';
@@ -27,12 +29,11 @@ User fromDocumentSnapshot(String name, String email, String password) {
 class AddStudentServiceFirestore extends AddStudentService {
   @override
   Future<void> register(String name, String email, String password) async {
-    try {
-      firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
-
+    await firebaseAuth
+        .createUserWithEmailAndPassword(email: email, password: password)
+        .then((cred) {
       try {
-        FirebaseFirestore.instance.collection('users').doc().set({
+        FirebaseFirestore.instance.collection("users").doc(cred.user!.uid).set({
           "isTeacher": false,
           "name": name,
         });
@@ -40,10 +41,13 @@ class AddStudentServiceFirestore extends AddStudentService {
         print("Erro ao add doc user: ");
         print(error2);
       }
-    } catch (error) {
-      print("Erro ao criar user: ");
+    }).onError((error, stackTrace) {
+      print("Erro ao criar user");
       print(error);
-    }
+    });
+    print("-------------------------");
+    print("EMAIL DO USER ATUAL:");
+    print(firebaseAuth.currentUser!.email);
     return null;
   }
 }
