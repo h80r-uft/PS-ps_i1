@@ -65,3 +65,21 @@ class Saving {
 
   Saving({required this.saving, this.savingError});
 }
+
+void Function(Store<AppState>) saveThunk(StudentsService studentsService) {
+  return (Store<AppState> store) {
+    store.dispatch(Saving(saving: true));
+
+    studentsService
+        .saveStudent(store.state.studentsState.editedStudent!)
+        .then((_) {
+      loadThunk(studentsService);
+      store.dispatch(Saving(saving: false));
+    }).onError((error, stackTrace) {
+      store.dispatch(Saving(
+        saving: false,
+        savingError: error.toString(),
+      ));
+    });
+  };
+}

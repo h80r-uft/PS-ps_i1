@@ -16,4 +16,14 @@ class StudentsServiceFirestore extends StudentsService {
             .map((doc) => fromDocumentSnapshot(doc) as Student)
             .toList());
   }
+
+  @override
+  Future<void> saveStudent(Student student) async {
+    userCollection.doc(student.uid).update(
+      {
+        'firstGrade': student.firstGrade,
+        'secondGrade': student.secondGrade,
+      },
+    );
+  }
 }
