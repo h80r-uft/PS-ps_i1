@@ -24,6 +24,11 @@ MySessionState mySessionReducer(MySessionState state, dynamic action) {
       password: action.password,
     );
   }
+  if (action is Obscure) {
+    return state.copyWith(
+      isObscured: !state.isObscured,
+    );
+  }
   if (action is ClearFormData) {
     return state.copyWith(
       email: null,
