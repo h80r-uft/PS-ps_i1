@@ -52,7 +52,7 @@ class StudentsViewModel {
           store.dispatch(FirstGradeChange(grade: grade)),
       onSecondGradeChange: (String grade) =>
           store.dispatch(SecondGradeChange(grade: grade)),
-      onSave: () {},
+      onSave: () => store.dispatch(Saving(saving: true)),
       saving: state.saving,
       savingError: state.savingError,
     );
