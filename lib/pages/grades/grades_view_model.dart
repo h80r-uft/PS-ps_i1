@@ -2,7 +2,6 @@ import 'package:redux/redux.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ps_i1/models/student.dart';
-import 'package:ps_i1/models/user.dart';
 import 'package:ps_i1/store/app_state.dart';
 
 class GradesViewModel {
@@ -46,10 +45,12 @@ class GradesViewModel {
     final student = store.state.mySessionState.user as Student;
 
     return GradesViewModel(
-      name: student.name!,
+      name: student.name!.split(' ').first,
       firstGrade: student.firstGrade,
       secondGrade: student.secondGrade,
-      onExit: () {},
+      onExit: () {
+        print('Deseja sair');
+      },
     );
   }
 }
