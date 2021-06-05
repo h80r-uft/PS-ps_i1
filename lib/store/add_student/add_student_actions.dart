@@ -1,3 +1,12 @@
+import 'package:ps_i1/middlewares/navigation/navigation_actions.dart';
+import 'package:ps_i1/models/student.dart';
+import 'package:redux/redux.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+
+import 'package:ps_i1/services/add_student/add_student_service.dart';
+
+import 'package:ps_i1/store/app_state.dart';
+
 /// Ação de atualização no nome.
 ///
 /// Atualiza o estado de [AddStudent]
@@ -58,25 +67,24 @@ class Registering {
   });
 }
 
-/*
-void Function(Store<AppState>) saveThunk(NoteService noteService) {
+void Function(Store<AppState>) saveThunk(AddStudentService addStudentService) {
+  print("function registrando!");
   return (Store<AppState> store) {
-    store.dispatch(Saving(saving: true));
+    store.dispatch(Registering(registering: true));
 
-    final note = Note(
-      title: store.state.addNoteState.title,
-      text: store.state.addNoteState.text,
-    );
-    noteService.add(note).then((newNote) {
-      store.dispatch(ClearFormData());
-      store.dispatch(Saving(saving: false));
-      store.dispatch(NavigateBack());
+    final state = store.state.addStudentState;
+
+    addStudentService
+        .register(state.name, state.email, state.password)
+        .then((value) {
+      store.dispatch(Registering(registering: false));
+      print("Registrado!");
     }).onError((error, stackTrace) {
-      store.dispatch(Saving(
-        saving: false,
-        savingError: error.toString(),
+      store.dispatch(Registering(
+        registering: false,
+        registeringError: error.toString(),
       ));
+      print("Erro ao registrar!");
     });
   };
 }
-*/
