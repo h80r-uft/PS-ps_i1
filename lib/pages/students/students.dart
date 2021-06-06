@@ -49,6 +49,7 @@ class Students extends StatelessWidget {
                       Text(
                         viewModel.editedStudent!.name,
                         style: const TextStyle(
+                          overflow: TextOverflow.ellipsis,
                           color: Colors.white,
                           fontSize: 24,
                         ),

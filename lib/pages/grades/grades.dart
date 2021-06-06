@@ -14,7 +14,10 @@ class Grades extends StatelessWidget {
       builder: (context, viewModel) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Olá, ${viewModel.name}!'),
+            title: Text(
+              'Olá, ${viewModel.name}!',
+              style: const TextStyle(overflow: TextOverflow.ellipsis),
+            ),
             centerTitle: true,
           ),
           body: Flex(
