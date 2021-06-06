@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:ps_i1/pages/new_user/new_user_view_model.dart';
 import 'package:ps_i1/store/app_state.dart';
+import 'package:ps_i1/pages/new_user/new_user_verification.dart';
 
 class MyInput extends StatelessWidget {
   final String? label;
@@ -79,7 +80,12 @@ class NewUser extends StatelessWidget {
                       child: const Text(
                         "Criar cadastro",
                       ),
-                      onPressed: viewModel.onRegister,
+                      onPressed: () {
+                        verify(viewModel.email, viewModel.password,
+                                viewModel.confirmPassword, context)
+                            ? viewModel.onRegister()
+                            : null;
+                      },
                     ),
                   ),
                   Container(

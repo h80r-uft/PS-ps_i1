@@ -41,6 +41,7 @@ class UserServiceFirestore extends UserService {
       try {
         final docSnapshot =
             await userCollection.doc(userCredential.user!.uid).get();
+        print(userCredential);
 
         return fromDocumentSnapshot(docSnapshot);
       } catch (error2) {

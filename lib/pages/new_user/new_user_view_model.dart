@@ -3,6 +3,7 @@ import 'package:redux/redux.dart';
 
 import 'package:ps_i1/store/add_student/add_student_actions.dart';
 import 'package:ps_i1/store/app_state.dart';
+import 'package:ps_i1/services/add_student/add_student_service_firestore.dart';
 
 class NewUserViewModel {
   final String name;
@@ -53,7 +54,7 @@ class NewUserViewModel {
       confirmPassword: state.confirmPassword,
       onConfirmPasswordChange: (String confirmPassword) =>
           store.dispatch(ConfirmPasswordChange(confirmPassword)),
-      onRegister: () {},
+      onRegister: () => store.dispatch(saveThunk(AddStudentServiceFirestore())),
       registering: state.registering,
       registeringError: state.registeringError,
       onSelectList: () => store.dispatch(NavigateTo('/students')),

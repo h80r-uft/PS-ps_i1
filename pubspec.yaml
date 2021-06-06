@@ -40,6 +40,8 @@ dependencies:
   redux_thunk: ^0.4.0
   url_strategy: ^0.2.0
   cloud_firestore: ^2.2.0
+  firebase: ^9.0.1
+  email_validator: ^2.0.1
 
 dev_dependencies:
   flutter_test:
