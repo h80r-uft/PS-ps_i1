@@ -33,6 +33,8 @@ class MySessionState {
   /// a senha.
   final String? passwordError;
 
+  /// Estado de visibilidade
+  /// da senha.
   final bool isObscured;
 
   /// Estado de carregamento

@@ -1,6 +1,6 @@
 import 'package:ps_i1/models/student.dart';
 
-/// Estaod atual da lista de estudantes.
+/// Estado atual da lista de estudantes.
 class StudentsState {
   /// Lista de todos os estudantes.
   final List<Student> students;
@@ -13,13 +13,24 @@ class StudentsState {
   /// carregamento.
   final String? loadingError;
 
+  /// Estado de edição de estudantes.
   final bool isEditing;
+
+  /// Erro obtido ao tentar editar
+  /// um estudante.
   final Student? editedStudent;
 
+  /// Primeira nota do estudante.
   final String? firstGrade;
+
+  /// Segunda nota do estudante.
   final String? secondGrade;
 
+  /// Informa se a edição está
+  /// sendo salva.
   final bool saving;
+
+  /// Erro obtido ao tentar salvar.
   final String? savingError;
 
   /// Gerador do estado da lista

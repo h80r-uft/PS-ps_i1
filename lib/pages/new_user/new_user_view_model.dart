@@ -5,24 +5,51 @@ import 'package:ps_i1/store/add_student/add_student_actions.dart';
 import 'package:ps_i1/store/app_state.dart';
 import 'package:ps_i1/services/add_student/add_student_service_firestore.dart';
 
+/// Modelo de visualização para cadastro
+/// de novos usuários.
+///
+/// Todos os dados aqui são temporários e
+/// apagados do estado depois do cadastro.
 class NewUserViewModel {
+  /// Nome do novo usuário.
   final String name;
+
+  /// Salva o nome inserido no estado.
   final Function(String) onNameChange;
 
+  /// Email do usuário.
   final String email;
+
+  /// Salva o email inserido no estado.
   final Function(String) onEmailChange;
 
+  /// Senha do usuário.
   final String password;
+
+  /// Salva a senha temporariamente
+  /// no estado.
   final Function(String) onPasswordChange;
 
+  /// Confirmação da senha do usuário.
   final String confirmPassword;
+
+  /// Salva a confirmação da senha
+  /// temporariamente no estado.
   final Function(String) onConfirmPasswordChange;
 
+  /// Registra o usuário.
   final Function() onRegister;
 
+  /// Informa se o usuário está sendo
+  /// registrado.
   final bool registering;
+
+  /// Erro ao tentar registrar o
+  /// usuário.
   final String? registeringError;
 
+  /// Navega para a página dos
+  /// estudantes cadastrados.
   final Function() onSelectList;
 
   const NewUserViewModel({
@@ -40,6 +67,7 @@ class NewUserViewModel {
     required this.onSelectList,
   });
 
+  /// Aplica os valores do estado no [NewUserViewModel].
   factory NewUserViewModel.fromStore(Store<AppState> store) {
     final state = store.state.addStudentState;
 

@@ -20,12 +20,16 @@ class Loading {
   });
 }
 
+/// Atualiza a lista de estudantes
+/// após uma modificação.
 class OnStudentsChange {
   final List<Student> students;
 
   OnStudentsChange({required this.students});
 }
 
+/// Utiliza o serviço adequado para baixar
+/// a lista de estudantes.
 void Function(Store<AppState>) loadThunk(StudentsService studentsService) {
   return (Store<AppState> store) {
     store.dispatch(Loading(loading: true));
@@ -42,24 +46,37 @@ void Function(Store<AppState>) loadThunk(StudentsService studentsService) {
   };
 }
 
+/// Ação de seleção de estudante.
+///
+/// Atualiza o estado de [Students]
+/// através do [index] armazenado.
 class OnTapItem {
   final int index;
 
   OnTapItem({required this.index});
 }
 
+/// Ação de edição de nota
+///
+/// Atualiza o estado de [Students]
+/// através do [grade] armazenado.
 class FirstGradeChange {
   final String grade;
 
   FirstGradeChange({required this.grade});
 }
 
+/// Ação de edição de nota
+///
+/// Atualiza o estado de [Students]
+/// através do [grade] armazenado.
 class SecondGradeChange {
   final String grade;
 
   SecondGradeChange({required this.grade});
 }
 
+/// Ação de salvamento da edição.
 class Saving {
   final bool saving;
   final String? savingError;
@@ -67,6 +84,8 @@ class Saving {
   Saving({required this.saving, this.savingError});
 }
 
+/// Utiliza o serviço adequado para salvar
+/// as edições de estudante.
 void Function(Store<AppState>) saveThunk(StudentsService studentsService) {
   return (Store<AppState> store) {
     store.dispatch(Saving(saving: true));

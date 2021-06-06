@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
+/// Gera um diálogo de alerta caso o cadastro esteja errado.
 createAlertDialog(BuildContext context, String message) {
   return showDialog(
       context: context,

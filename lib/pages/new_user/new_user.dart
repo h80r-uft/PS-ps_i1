@@ -4,10 +4,18 @@ import 'package:ps_i1/pages/new_user/new_user_view_model.dart';
 import 'package:ps_i1/store/app_state.dart';
 import 'package:ps_i1/pages/new_user/new_user_verification.dart';
 
+/// Componente para entrada do usuário.
 class MyInput extends StatelessWidget {
+  /// Legenda da entrada.
   final String? label;
+
+  /// Dica exibida quando não há texto
   final String? hint;
+
+  /// Identifica se a entrada é uma senha.
   final bool isPassword;
+
+  /// Armazena o inserido no estado.
   final Function(String)? onChanged;
 
   const MyInput({

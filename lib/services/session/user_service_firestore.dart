@@ -7,12 +7,17 @@ import 'package:ps_i1/models/teacher.dart';
 import 'package:ps_i1/models/user.dart';
 import 'package:ps_i1/services/session/user_service.dart';
 
+/// Instância de autenticação do firebase.
 firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
 
 const db = FirebaseFirestore;
 
+/// Coleção de usuários presente no banco
+/// de dados.
 final userCollection = FirebaseFirestore.instance.collection("users");
 
+/// Gera um usuário a partir do [doc], uma
+/// [DocumentSnapshot].
 User fromDocumentSnapshot(DocumentSnapshot doc) {
   final data = doc.data();
 
@@ -29,6 +34,8 @@ User fromDocumentSnapshot(DocumentSnapshot doc) {
         );
 }
 
+/// Serviços necessários para manutenção
+/// do estado de login.
 class UserServiceFirestore extends UserService {
   @override
   Future<User?> login(String email, String password) async {
