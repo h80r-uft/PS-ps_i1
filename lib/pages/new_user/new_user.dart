@@ -83,7 +83,7 @@ class NewUser extends StatelessWidget {
                       onPressed: () {
                         verify(viewModel.email, viewModel.password,
                                 viewModel.confirmPassword, context)
-                            ? viewModel.onRegister
+                            ? viewModel.onRegister()
                             : null;
                       },
                     ),

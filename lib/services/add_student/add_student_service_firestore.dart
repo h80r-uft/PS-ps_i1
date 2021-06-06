@@ -24,10 +24,12 @@ class AddStudentServiceFirestore extends AddStudentService {
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then((cred) {
-      FirebaseFirestore.instance
-          .collection("users")
-          .doc(cred.user!.uid)
-          .set({"isTeacher": false, "name": name});
+      FirebaseFirestore.instance.collection("users").doc(cred.user!.uid).set({
+        "isTeacher": false,
+        "name": name,
+        'firstGrade': 0,
+        'secondGrade': 0,
+      });
       secondaryApp.auth().signOut();
       secondaryApp.delete();
     }).onError((error, stackTrace) {
