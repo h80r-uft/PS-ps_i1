@@ -6,18 +6,30 @@ import 'package:flutter/material.dart';
 import 'package:ps_i1/models/student.dart';
 import 'package:ps_i1/store/app_state.dart';
 
+/// Modelo de visualização para as notas.
 class GradesViewModel {
+  /// Nome do estudante.
   final String name;
 
+  /// Primeira nota do estudante.
   final double firstGrade;
+
+  /// Estado da primeira nota.
   late final Color firstGradeStatus;
 
+  /// Segunda nota do estudante.
   final double secondGrade;
+
+  /// Estado da segunda nota.
   late final Color secondGradeStatus;
 
+  /// Média obtida pelo estudante.
   late final double average;
+
+  /// Estado da média.
   late final Color averageStatus;
 
+  /// Realiza o logout do usuário.
   final void Function() onExit;
 
   GradesViewModel({
@@ -33,6 +45,7 @@ class GradesViewModel {
     averageStatus = _getStatus(average);
   }
 
+  /// Identifica o estado da nota baseado na média.
   Color _getStatus(double grade) {
     if (grade < 5) {
       return Colors.red;
@@ -43,6 +56,7 @@ class GradesViewModel {
     return Colors.green;
   }
 
+  /// Aplica os valores do estado no [GradesViewModel].
   factory GradesViewModel.fromStore(Store<AppState> store) {
     final student = store.state.mySessionState.user as Student?;
 

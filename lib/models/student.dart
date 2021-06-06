@@ -11,6 +11,9 @@ class Student extends User {
   /// Segunda nota do estudante.
   final double secondGrade;
 
+  /// Estado do estudante.
+  ///
+  /// Representa a quantidade de notas registradas.
   late final int state;
 
   Student(User user, {required this.firstGrade, required this.secondGrade})
@@ -21,6 +24,10 @@ class Student extends User {
     state = (firstGrade != 0.0 ? 1 : 0) + (secondGrade != 0.0 ? 1 : 0);
   }
 
+  /// Gera um novo estudante a partir do atual
+  ///
+  /// Pode receber uma nova [firstGrade] e também
+  /// uma nova [secondGrade].
   Student copyFrom({
     double? firstGrade,
     double? secondGrade,

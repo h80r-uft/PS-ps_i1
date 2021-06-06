@@ -46,7 +46,9 @@ class StudentItem extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.symmetric(
-          horizontal: size.width * 0.06, vertical: size.height * 0.006),
+        horizontal: size.width * 0.06,
+        vertical: size.height * 0.006,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

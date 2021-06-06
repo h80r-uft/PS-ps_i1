@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
+/// Exibe a nota com um underline colorido.
 class Grade extends StatelessWidget {
+  /// Nota obtida
   final double grade;
+
+  /// Legenda da nota
   final String title;
+
+  /// Cor do underline
   final Color color;
 
   const Grade({
