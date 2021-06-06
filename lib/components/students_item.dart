@@ -38,9 +38,17 @@ class StudentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const textStyle = TextStyle(
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
+      fontSize: 22,
+    );
+
     return Container(
       margin: EdgeInsets.symmetric(
-          horizontal: size.width * 0.06, vertical: size.height * 0.006),
+        horizontal: size.width * 0.06,
+        vertical: size.height * 0.006,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -53,10 +61,7 @@ class StudentItem extends StatelessWidget {
             radius: size.width * 0.06,
             child: Text(
               _initials,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22),
+              style: textStyle,
             ),
           ),
           SizedBox(
@@ -66,10 +71,7 @@ class StudentItem extends StatelessWidget {
             child: Text(
               fullName,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22),
+              style: textStyle,
             ),
           ),
         ],

@@ -19,6 +19,7 @@ void main() {
   runApp(const App());
 }
 
+/// Intermediário que inicializa o firebase.
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
 
@@ -26,6 +27,7 @@ class App extends StatefulWidget {
   _AppState createState() => _AppState();
 }
 
+/// Estado responsável por inicializar o firebase.
 class _AppState extends State<App> {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
@@ -40,7 +42,7 @@ class _AppState extends State<App> {
         if (snapshot.connectionState == ConnectionState.done) {
           return const MyNewApp();
         }
-        return pages.Loading();
+        return const pages.Loading();
       },
     );
   }
@@ -50,7 +52,7 @@ class _AppState extends State<App> {
 ///
 /// Define o `title` do aplicativo, a `ThemeData`
 /// aplicada neste, e também inicializa o fluxo
-/// de páginas através da `home`
+/// de páginas através da do construtor [StoreProvider].
 class MyNewApp extends StatelessWidget {
   const MyNewApp({Key? key}) : super(key: key);
 

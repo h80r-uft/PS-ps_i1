@@ -33,6 +33,8 @@ class MySessionState {
   /// a senha.
   final String? passwordError;
 
+  /// Estado de visibilidade
+  /// da senha.
   final bool isObscured;
 
   /// Estado de carregamento
@@ -61,8 +63,8 @@ class MySessionState {
   factory MySessionState.initial() {
     return const MySessionState(
       user: null,
-      email: "",
-      password: "",
+      email: '',
+      password: '',
       isObscured: true,
       loading: false,
     );

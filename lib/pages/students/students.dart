@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
@@ -10,6 +8,7 @@ import 'package:ps_i1/services/services.dart';
 import 'package:ps_i1/store/app_state.dart';
 import 'package:ps_i1/store/students/students_actions.dart';
 
+/// Página que exibe os estudantes.
 class Students extends StatelessWidget {
   const Students({Key? key}) : super(key: key);
 

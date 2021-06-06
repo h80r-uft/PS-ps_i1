@@ -1,6 +1,5 @@
 import 'package:ps_i1/store/my_session/my_session_actions.dart';
 import 'package:ps_i1/store/my_session/my_session_state.dart';
-import 'package:ps_i1/components/loading/loading.dart';
 
 /// Executa a [action] atribuída gerando um
 /// novo estado partindo do [state] original.
@@ -9,10 +8,11 @@ import 'package:ps_i1/components/loading/loading.dart';
 ///
 /// - [EmailChange]
 /// - [PasswordChange]
-/// - [SessionStart]
+/// - [Obscure]
 /// - [ClearFormData]
+/// - [SessionStart]
 /// - [SessionEnd]
-/// - [Loading]
+/// - [LoadingAction]
 MySessionState mySessionReducer(MySessionState state, dynamic action) {
   if (action is EmailChange) {
     return state.copyWith(

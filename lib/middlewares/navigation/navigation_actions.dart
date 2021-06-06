@@ -6,7 +6,10 @@ class NavigateTo {
   NavigateTo(this.routeName);
 }
 
+/// Através do [routeName] substitui
+/// a tela atual pela tela de destino.
 class NavigateReplace {
+  /// Nome da rota de destino.
   final String routeName;
   NavigateReplace(this.routeName);
 }

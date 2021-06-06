@@ -4,10 +4,18 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:ps_i1/store/app_state.dart';
 import 'package:ps_i1/pages/my_session/my_session_view_model.dart';
 
+/// Componente para entrada do usuário.
 class Input extends StatelessWidget {
+  /// Identifica se a entrada é uma senha.
   final bool isPassword;
+
+  /// Dica exibida quando não há texto
   final String hint;
+
+  /// Componente que fica a direita da entrada.
   final Widget? suffix;
+
+  /// Armazena o inserido no estado.
   final Function(String)? onChanged;
 
   const Input({
@@ -45,13 +53,12 @@ class Input extends StatelessWidget {
   }
 }
 
+/// Página para login.
 class MySession extends StatelessWidget {
   const MySession({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    print("BEGGINING");
-
     return StoreConnector<AppState, MySessionViewModel>(
       converter: (store) => MySessionViewModel.fromStore(store),
       builder: (context, viewModel) {

@@ -11,6 +11,7 @@ import 'package:ps_i1/services/session/user_service.dart';
 
 import 'package:ps_i1/store/app_state.dart';
 
+/// Instância de autenticação do firebase.
 firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
 
 /// Ação de atualização no email.
@@ -31,6 +32,7 @@ class PasswordChange {
   PasswordChange(this.password);
 }
 
+/// Ação de visualização da senha.
 class Obscure {}
 
 /// Ação de inicio de sessão.
@@ -70,6 +72,10 @@ class LoadingAction {
   });
 }
 
+/// Utiliza o serviço adequado para logar.
+///
+/// Dependendo do usuário logado redireciona
+/// para sua página adequada.
 void Function(Store<AppState>) saveThunk(UserService userService) {
   return (Store<AppState> store) {
     store.dispatch(LoadingAction(loading: true));
@@ -91,6 +97,10 @@ void Function(Store<AppState>) saveThunk(UserService userService) {
   };
 }
 
+/// Utiliza o serviço adequado para
+/// realizar logout.
+///
+/// Redireciona o usuário à pagina de login.
 void Function(Store<AppState>) logoutThunk(UserService userService) {
   return (Store<AppState> store) {
     store.dispatch(LoadingAction(loading: true));

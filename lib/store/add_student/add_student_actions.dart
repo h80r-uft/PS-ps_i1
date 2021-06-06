@@ -63,6 +63,8 @@ class Registering {
   });
 }
 
+/// Utiliza o serviço adequado para registrar
+/// o novo estudante.
 void Function(Store<AppState>) saveThunk(AddStudentService addStudentService) {
   return (Store<AppState> store) {
     store.dispatch(Registering(registering: true));

@@ -1,6 +1,7 @@
 // Import the firebase_core and cloud_firestore plugin
 import 'package:firebase/firebase.dart' as firebase;
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:ps_i1/services/add_student/add_student_service.dart';
 
 /// Conecta com firestore para registro de alunos
@@ -33,8 +34,8 @@ class AddStudentServiceFirestore extends AddStudentService {
       secondaryApp.auth().signOut();
       secondaryApp.delete();
     }).onError((error, stackTrace) {
+      // ignore: avoid_print
       print(error);
     });
-    return null;
   }
 }

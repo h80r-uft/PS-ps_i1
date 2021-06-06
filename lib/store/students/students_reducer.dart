@@ -7,6 +7,11 @@ import 'package:ps_i1/store/students/students_state.dart';
 /// ### Possíveis ações
 ///
 /// - [Loading]
+/// - [OnStudentsChange]
+/// - [OnTapItem]
+/// - [FirstGradeChange]
+/// - [SecondGradeChange]
+/// - [Saving]
 StudentsState studentsReducer(StudentsState state, dynamic action) {
   if (action is Loading) {
     return state.copyWith(

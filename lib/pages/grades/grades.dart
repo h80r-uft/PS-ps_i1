@@ -5,6 +5,7 @@ import 'package:ps_i1/components/grade_show.dart';
 import 'package:ps_i1/pages/grades/grades_view_model.dart';
 import 'package:ps_i1/store/app_state.dart';
 
+/// Página que mostra ao aluno suas notas.
 class Grades extends StatelessWidget {
   const Grades({Key? key}) : super(key: key);
   @override

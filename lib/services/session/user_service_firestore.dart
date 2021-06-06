@@ -7,16 +7,21 @@ import 'package:ps_i1/models/teacher.dart';
 import 'package:ps_i1/models/user.dart';
 import 'package:ps_i1/services/session/user_service.dart';
 
+/// Instância de autenticação do firebase.
 firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
 
 const db = FirebaseFirestore;
 
+/// Coleção de usuários presente no banco
+/// de dados.
 final userCollection = FirebaseFirestore.instance.collection("users");
 
+/// Gera um usuário a partir do [doc], uma
+/// [DocumentSnapshot].
 User fromDocumentSnapshot(DocumentSnapshot doc) {
   final data = doc.data();
 
-  if (data == null || data is! Map) throw "DocumentSnapshot data error!";
+  if (data == null || data is! Map) throw 'DocumentSnapshot data error!';
 
   final user = User(uid: doc.id, name: data['name']);
 
@@ -29,6 +34,8 @@ User fromDocumentSnapshot(DocumentSnapshot doc) {
         );
 }
 
+/// Serviços necessários para manutenção
+/// do estado de login.
 class UserServiceFirestore extends UserService {
   @override
   Future<User?> login(String email, String password) async {
@@ -41,14 +48,14 @@ class UserServiceFirestore extends UserService {
       try {
         final docSnapshot =
             await userCollection.doc(userCredential.user!.uid).get();
-        print(userCredential);
 
         return fromDocumentSnapshot(docSnapshot);
-      } catch (error2) {
-        print("Erro ao buscar documento: ");
-        print(error2);
+      } catch (error) {
+        // ignore: avoid_print
+        print('Erro ao buscar documento: ' + error.toString());
       }
     } catch (error) {
+      // ignore: avoid_print
       print(error);
     }
     return null;
@@ -56,11 +63,9 @@ class UserServiceFirestore extends UserService {
 
   @override
   Future<void> logout(User user) async {
-    firebaseAuth.signOut().then((user) {
-      print("saiu");
-    }).catchError((error) {
-      print("erro ao sair");
-      print(error);
+    firebaseAuth.signOut().catchError((error) {
+      // ignore: avoid_print
+      print('Erro ao sair: ' + error.toString());
     });
   }
 }
