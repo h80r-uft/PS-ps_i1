@@ -33,6 +33,8 @@ class MySessionState {
   /// a senha.
   final String? passwordError;
 
+  final bool isObscured;
+
   /// Estado de carregamento
   /// do login.
   final bool loading;
@@ -49,6 +51,7 @@ class MySessionState {
     this.emailError,
     required this.password,
     this.passwordError,
+    required this.isObscured,
     required this.loading,
     this.loadingError,
   });
@@ -60,6 +63,7 @@ class MySessionState {
       user: null,
       email: "",
       password: "",
+      isObscured: true,
       loading: false,
     );
   }
@@ -74,6 +78,7 @@ class MySessionState {
     String? emailError,
     String? password,
     String? passwordError,
+    bool? isObscured,
     bool? loading,
     String? loadingError,
   }) {
@@ -83,6 +88,7 @@ class MySessionState {
       emailError: emailError ?? this.emailError,
       password: password ?? this.password,
       passwordError: passwordError ?? this.passwordError,
+      isObscured: isObscured ?? this.isObscured,
       loading: loading ?? this.loading,
       loadingError: loadingError ?? this.loadingError,
     );

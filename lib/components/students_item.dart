@@ -32,13 +32,8 @@ class StudentItem extends StatelessWidget {
   ///
   /// Através da divisão do [fullName]
   /// retorna as iniciais do estudante.
-  initials() {
-    List<String> name = fullName.split(" ");
-    String initials = '';
-    initials += '${name[0][0]}';
-    initials += '${name[1][0]}';
-
-    return initials;
+  get _initials {
+    return fullName.split(' ').map((e) => e.split('').first).take(2).join('');
   }
 
   @override
@@ -57,20 +52,25 @@ class StudentItem extends StatelessWidget {
                 : Colors.red,
             radius: size.width * 0.06,
             child: Text(
-              initials(),
+              _initials,
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 24),
+                  fontSize: 22),
             ),
           ),
           SizedBox(
             width: size.width * 0.03,
           ),
-          Text(
-            fullName,
-            style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 22),
+          Expanded(
+            child: Text(
+              fullName,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22),
+            ),
           ),
         ],
       ),

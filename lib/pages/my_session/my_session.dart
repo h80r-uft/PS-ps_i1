@@ -71,41 +71,14 @@ class MySession extends StatelessWidget {
                 Input(
                   hint: 'Senha',
                   onChanged: viewModel.onPasswordChanged,
-                  isPassword: true,
+                  isPassword: viewModel.isObscured,
                   suffix: IconButton(
-                    onPressed: () {},
+                    onPressed: viewModel.onObscure,
                     icon: const Icon(
                       Icons.visibility,
                       size: 18,
                       color: Colors.black45,
                     ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 12, right: 12),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        width: 135,
-                        height: 20,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            primary: Colors.grey,
-                          ),
-                          child: const Text(
-                            'Esqueci a senha',
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
                   ),
                 ),
                 const SizedBox(

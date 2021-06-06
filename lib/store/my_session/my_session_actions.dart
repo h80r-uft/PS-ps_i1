@@ -31,6 +31,8 @@ class PasswordChange {
   PasswordChange(this.password);
 }
 
+class Obscure {}
+
 /// Ação de inicio de sessão.
 ///
 /// Atualiza o estado de [MySession]
@@ -86,5 +88,26 @@ void Function(Store<AppState>) saveThunk(UserService userService) {
         loadingError: error.toString(),
       ));
     });
+  };
+}
+
+void Function(Store<AppState>) logoutThunk(UserService userService) {
+  return (Store<AppState> store) {
+    store.dispatch(LoadingAction(loading: true));
+
+    final state = store.state.mySessionState;
+
+    userService.logout(state.user!).then((_) {
+      store.dispatch(SessionEnd());
+      store.dispatch(NavigateReplace('/'));
+      store.dispatch(LoadingAction(loading: false));
+    }).onError(
+      (error, stackTrace) => store.dispatch(
+        LoadingAction(
+          loading: false,
+          loadingError: error.toString(),
+        ),
+      ),
+    );
   };
 }

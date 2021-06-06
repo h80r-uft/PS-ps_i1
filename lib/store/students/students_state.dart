@@ -16,6 +16,9 @@ class StudentsState {
   final bool isEditing;
   final Student? editedStudent;
 
+  final String? firstGrade;
+  final String? secondGrade;
+
   final bool saving;
   final String? savingError;
 
@@ -27,6 +30,8 @@ class StudentsState {
     this.loadingError,
     required this.isEditing,
     this.editedStudent,
+    this.firstGrade,
+    this.secondGrade,
     required this.saving,
     this.savingError,
   });
@@ -51,6 +56,8 @@ class StudentsState {
     String? loadingError,
     bool? isEditing,
     Student? editedStudent,
+    String? firstGrade,
+    String? secondGrade,
     bool? saving,
     String? savingError,
   }) {
@@ -60,6 +67,8 @@ class StudentsState {
       loadingError: loadingError ?? this.loadingError,
       isEditing: isEditing ?? this.isEditing,
       editedStudent: editedStudent ?? this.editedStudent,
+      firstGrade: firstGrade ?? this.firstGrade,
+      secondGrade: secondGrade ?? this.secondGrade,
       saving: saving ?? this.saving,
       savingError: savingError ?? this.savingError,
     );

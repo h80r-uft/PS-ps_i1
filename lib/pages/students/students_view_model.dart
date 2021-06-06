@@ -2,6 +2,8 @@ import 'package:redux/redux.dart';
 
 import 'package:ps_i1/models/student.dart';
 
+import 'package:ps_i1/services/services.dart';
+
 import 'package:ps_i1/store/students/students_actions.dart';
 import 'package:ps_i1/store/app_state.dart';
 
@@ -15,6 +17,8 @@ class StudentsViewModel {
 
   final bool isEditing;
   final Student? editedStudent;
+  final String? firstGrade;
+  final String? secondGrade;
 
   final void Function(String) onFirstGradeChange;
   final void Function(String) onSecondGradeChange;
@@ -31,6 +35,8 @@ class StudentsViewModel {
     required this.onTapItem,
     required this.isEditing,
     required this.editedStudent,
+    required this.firstGrade,
+    required this.secondGrade,
     required this.onFirstGradeChange,
     required this.onSecondGradeChange,
     required this.onSave,
@@ -48,11 +54,15 @@ class StudentsViewModel {
       onTapItem: (int index) => store.dispatch(OnTapItem(index: index)),
       isEditing: state.isEditing,
       editedStudent: state.editedStudent,
+      firstGrade:
+          state.firstGrade ?? state.editedStudent?.firstGrade.toString(),
+      secondGrade:
+          state.secondGrade ?? state.editedStudent?.secondGrade.toString(),
       onFirstGradeChange: (String grade) =>
           store.dispatch(FirstGradeChange(grade: grade)),
       onSecondGradeChange: (String grade) =>
           store.dispatch(SecondGradeChange(grade: grade)),
-      onSave: () {},
+      onSave: () => store.dispatch(saveThunk(Services.students)),
       saving: state.saving,
       savingError: state.savingError,
     );
