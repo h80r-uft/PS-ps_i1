@@ -1,7 +1,8 @@
 import 'package:redux/redux.dart';
 import 'package:ps_i1/services/add_student/add_student_service.dart';
-import 'package:ps_i1/store/add_student/add_student_verification.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:ps_i1/store/app_state.dart';
+import 'package:ps_i1/pages/new_user/new_user.dart';
 
 /// Ação de atualização no nome.
 ///
@@ -64,22 +65,36 @@ class Registering {
 }
 
 void Function(Store<AppState>) saveThunk(AddStudentService addStudentService) {
+  print("roi");
   return (Store<AppState> store) {
     store.dispatch(Registering(registering: true));
 
     final state = store.state.addStudentState;
+    print("roi2");
 
-    if (verify(state.email, state.password, state.confirmPassword)) {
-      addStudentService
-          .register(state.name, state.email, state.password)
-          .then((value) {
-        store.dispatch(Registering(registering: false));
-      }).onError((error, stackTrace) {
-        store.dispatch(Registering(
-          registering: false,
-          registeringError: error.toString(),
-        ));
-      });
-    }
+    //verify(state.email, state.password, state.confirmPassword);
+    addStudentService
+        .register(state.name, state.email, state.password)
+        .then((value) {
+      store.dispatch(Registering(registering: false));
+    }).onError((error, stackTrace) {
+      store.dispatch(Registering(
+        registering: false,
+        registeringError: error.toString(),
+      ));
+    });
   };
 }
+/*
+void Function() verify(String email, String password, String confirmPassword) {
+  return () {
+    if (!EmailValidator.validate(email)) {
+      print("Email inválido!");
+      createAlertDialog();
+    } else if (password != confirmPassword) {
+      print("As duas senhas não são correspondentes!");
+    } else if (password.length < 6) {
+      print("Senha deve ter ao menos 6 dígitos");
+    }
+  };
+}*/
