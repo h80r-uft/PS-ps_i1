@@ -16,7 +16,7 @@ class Grades extends StatelessWidget {
           appBar: AppBar(
             title: Text(
               'Olá, ${viewModel.name}!',
-              style: const TextStyle(overflow: TextOverflow.ellipsis),
+              overflow: TextOverflow.ellipsis,
             ),
             centerTitle: true,
           ),
