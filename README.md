@@ -2,6 +2,23 @@
 
 <img src="./.readme/logo.png" width="100">
 
+## Acesse o aplicativo
+
+**O aplicativo pode ser acessado através deste [link](https://h80r.github.io/ps_i1_web/).**
+
+### Login de professor
+
+Iremos disponibilizar aqui um acesso válido:
+
+- Email:
+	- `ces.oao.vicente@planejar.edu.br`
+- Senha:
+	- `minha_senha_123`
+
+### Observações
+
+- O aplicativo foi desenvolvido tendo em mente as proporções de um dispositivo *mobile*, mesmo que seja acessado através da *web*. Por isso, pode ser que algumas escolhas de *design* pareçam ruins em proporções de *desktop*.
+
 ## Objetivo
 
 - Desenvolver uma aplicação simples e funcional para controle de notas
