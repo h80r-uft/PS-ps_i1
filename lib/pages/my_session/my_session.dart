@@ -50,8 +50,6 @@ class MySession extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("BEGGINING");
-
     return StoreConnector<AppState, MySessionViewModel>(
       converter: (store) => MySessionViewModel.fromStore(store),
       builder: (context, viewModel) {

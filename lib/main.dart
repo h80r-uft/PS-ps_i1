@@ -40,7 +40,7 @@ class _AppState extends State<App> {
         if (snapshot.connectionState == ConnectionState.done) {
           return const MyNewApp();
         }
-        return pages.Loading();
+        return const pages.Loading();
       },
     );
   }

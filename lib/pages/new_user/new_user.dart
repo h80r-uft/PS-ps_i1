@@ -42,7 +42,7 @@ class NewUser extends StatelessWidget {
       builder: (context, viewModel) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text("Cadastrar novo usuário"),
+            title: const Text('Cadastrar novo usuário'),
           ),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -78,7 +78,7 @@ class NewUser extends StatelessWidget {
                     margin: const EdgeInsets.only(top: 10.0),
                     child: OutlinedButton(
                       child: const Text(
-                        "Criar cadastro",
+                        'Criar cadastro',
                       ),
                       onPressed: () {
                         verify(viewModel.email, viewModel.password,
@@ -93,7 +93,7 @@ class NewUser extends StatelessWidget {
                     margin: const EdgeInsets.only(top: 10.0),
                     child: OutlinedButton(
                       child: const Text(
-                        "Lista de alunos",
+                        'Lista de alunos',
                       ),
                       onPressed: viewModel.onSelectList,
                     ),

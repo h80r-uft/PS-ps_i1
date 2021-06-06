@@ -33,7 +33,6 @@ class MySessionViewModel {
   });
 
   factory MySessionViewModel.fromStore(Store<AppState> store) {
-    print("FACTORY MySessionViewModel");
     return MySessionViewModel(
       email: store.state.mySessionState.email,
       emailError: store.state.mySessionState.emailError,

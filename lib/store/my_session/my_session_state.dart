@@ -61,8 +61,8 @@ class MySessionState {
   factory MySessionState.initial() {
     return const MySessionState(
       user: null,
-      email: "",
-      password: "",
+      email: '',
+      password: '',
       isObscured: true,
       loading: false,
     );
