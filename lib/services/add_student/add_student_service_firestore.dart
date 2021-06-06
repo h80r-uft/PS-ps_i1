@@ -7,7 +7,7 @@ import 'package:ps_i1/services/add_student/add_student_service.dart';
 class AddStudentServiceFirestore extends AddStudentService {
   @override
 
-  /// Registra estudante a partir de seu nome, email e senha
+  /// Registra estudante a partir de nome, email e senha
   Future<void> register(String name, String email, String password) async {
     final secondaryApp = firebase.initializeApp(
         apiKey: "AIzaSyCzzAAm9k4eJr3TqJDl9mGx1lwHRw3zQbw",

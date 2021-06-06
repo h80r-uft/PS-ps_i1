@@ -1,10 +1,6 @@
-import 'package:ps_i1/middlewares/navigation/navigation_actions.dart';
-import 'package:ps_i1/models/student.dart';
 import 'package:redux/redux.dart';
-import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-
 import 'package:ps_i1/services/add_student/add_student_service.dart';
-
+import 'package:ps_i1/store/add_student/add_student_verification.dart';
 import 'package:ps_i1/store/app_state.dart';
 
 /// Ação de atualização no nome.
@@ -68,21 +64,22 @@ class Registering {
 }
 
 void Function(Store<AppState>) saveThunk(AddStudentService addStudentService) {
-  print("function registrando!");
   return (Store<AppState> store) {
     store.dispatch(Registering(registering: true));
 
     final state = store.state.addStudentState;
 
-    addStudentService
-        .register(state.name, state.email, state.password)
-        .then((value) {
-      store.dispatch(Registering(registering: false));
-    }).onError((error, stackTrace) {
-      store.dispatch(Registering(
-        registering: false,
-        registeringError: error.toString(),
-      ));
-    });
+    if (verify(state.email, state.password, state.confirmPassword)) {
+      addStudentService
+          .register(state.name, state.email, state.password)
+          .then((value) {
+        store.dispatch(Registering(registering: false));
+      }).onError((error, stackTrace) {
+        store.dispatch(Registering(
+          registering: false,
+          registeringError: error.toString(),
+        ));
+      });
+    }
   };
 }
