@@ -110,6 +110,16 @@ class NewUser extends StatelessWidget {
               ),
             ),
           ),
+          bottomNavigationBar: Container(
+            margin: const EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 8.0,
+            ),
+            child: OutlinedButton(
+              onPressed: viewModel.onExit,
+              child: const Text('Sair'),
+            ),
+          ),
         );
       },
     );
