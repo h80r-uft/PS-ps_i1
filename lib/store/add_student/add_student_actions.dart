@@ -2,6 +2,7 @@ import 'package:ps_i1/middlewares/navigation/navigation_actions.dart';
 import 'package:redux/redux.dart';
 import 'package:ps_i1/services/add_student/add_student_service.dart';
 import 'package:ps_i1/store/app_state.dart';
+import 'package:ps_i1/services/session/user_service.dart';
 
 /// Ação de atualização no nome.
 ///
@@ -47,6 +48,28 @@ class ConfirmPasswordChange {
 /// Limpa o estado de [AddStudent].
 class ClearFormData {}
 
+/// Ação de fim de sessão.
+///
+/// Limpa o estado de [MySession].
+class SessionEnd {}
+
+/// Ação de carregamento de usuário.
+///
+/// Informa o estado de login do
+/// usuário através do booleano
+/// [loading].
+class LoadingAction {
+  /// Estado de login.
+  final bool loading;
+
+  /// Erro obtido ao entrar.
+  final String? loadingError;
+  LoadingAction({
+    required this.loading,
+    this.loadingError,
+  });
+}
+
 /// Ação de confirmação do cadastro.
 ///
 /// Confirma o salvamento do estudante
@@ -83,5 +106,30 @@ void Function(Store<AppState>) saveThunk(AddStudentService addStudentService) {
         registeringError: error.toString(),
       ));
     });
+  };
+}
+
+/// Utiliza o serviço adequado para
+/// realizar logout.
+///
+/// Redireciona o usuário à pagina de login.
+void Function(Store<AppState>) logoutThunk(UserService userService) {
+  return (Store<AppState> store) {
+    store.dispatch(LoadingAction(loading: true));
+
+    final state = store.state.mySessionState;
+
+    userService.logout(state.user!).then((_) {
+      store.dispatch(SessionEnd());
+      store.dispatch(NavigateReplace('/'));
+      store.dispatch(LoadingAction(loading: false));
+    }).onError(
+      (error, stackTrace) => store.dispatch(
+        LoadingAction(
+          loading: false,
+          loadingError: error.toString(),
+        ),
+      ),
+    );
   };
 }

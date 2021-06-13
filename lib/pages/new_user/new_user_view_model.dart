@@ -1,6 +1,6 @@
+import 'package:ps_i1/services/services.dart';
 import 'package:ps_i1/middlewares/navigation/navigation_actions.dart';
 import 'package:redux/redux.dart';
-
 import 'package:ps_i1/store/add_student/add_student_actions.dart';
 import 'package:ps_i1/store/app_state.dart';
 import 'package:ps_i1/services/add_student/add_student_service_firestore.dart';
@@ -52,6 +52,9 @@ class NewUserViewModel {
   /// estudantes cadastrados.
   final Function() onSelectList;
 
+  /// Realiza o logout do usuário.
+  final void Function() onExit;
+
   const NewUserViewModel({
     required this.name,
     required this.onNameChange,
@@ -65,6 +68,7 @@ class NewUserViewModel {
     required this.registering,
     required this.registeringError,
     required this.onSelectList,
+    required this.onExit,
   });
 
   /// Aplica os valores do estado no [NewUserViewModel].
@@ -86,6 +90,7 @@ class NewUserViewModel {
       registering: state.registering,
       registeringError: state.registeringError,
       onSelectList: () => store.dispatch(NavigateTo('/students')),
+      onExit: () => store.dispatch(logoutThunk(Services.users)),
     );
   }
 }
