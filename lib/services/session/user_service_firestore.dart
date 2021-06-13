@@ -51,14 +51,11 @@ class UserServiceFirestore extends UserService {
 
         return fromDocumentSnapshot(docSnapshot);
       } catch (error) {
-        // ignore: avoid_print
-        print('Erro ao buscar documento: ' + error.toString());
+        rethrow;
       }
     } catch (error) {
-      // ignore: avoid_print
-      print(error);
+      rethrow;
     }
-    return null;
   }
 
   @override

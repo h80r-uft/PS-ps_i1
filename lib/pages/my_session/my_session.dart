@@ -105,6 +105,24 @@ class MySession extends StatelessWidget {
               ],
             ),
           ),
+          bottomSheet: viewModel.loadingError is String
+              ? Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 3,
+                    horizontal: 2,
+                  ),
+                  child: Flexible(
+                    child: Text(
+                      viewModel.loadingError.toString().substring(
+                          viewModel.loadingError.toString().indexOf(' ') + 1),
+                      style: const TextStyle(color: Colors.white),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  color: Theme.of(context).primaryColor,
+                )
+              : null,
         );
       },
     );
