@@ -16,7 +16,9 @@ createAlertDialog(BuildContext context) {
       builder: (context) {
         return AlertDialog(
           title: const Text('Notas inválidas!'),
-          content: Text("Elas precisam estar no intervalo [0, 10]."),
+          content: const Text(
+            'Elas precisam estar no intervalo [0, 10] e também ser números.',
+          ),
           backgroundColor: const Color(0xff731FA1),
           actions: <Widget>[
             MaterialButton(
@@ -110,9 +112,10 @@ class Students extends StatelessWidget {
                         width: double.infinity,
                         child: OutlinedButton(
                           onPressed: () {
-                            validGrade(double.parse(viewModel.firstGrade!)) &&
+                            validGrade(double.tryParse(
+                                        viewModel.firstGrade!)) &&
                                     validGrade(
-                                        double.parse(viewModel.secondGrade!))
+                                        double.tryParse(viewModel.secondGrade!))
                                 ? viewModel.onSave()
                                 : createAlertDialog(context);
                           },
