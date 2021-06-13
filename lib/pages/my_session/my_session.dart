@@ -112,7 +112,7 @@ class MySession extends StatelessWidget {
                     vertical: 3,
                     horizontal: 2,
                   ),
-                  child: Flexible(
+                  child: Expanded(
                     child: Text(
                       viewModel.loadingError.toString().substring(
                           viewModel.loadingError.toString().indexOf(' ') + 1),
