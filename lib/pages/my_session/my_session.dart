@@ -108,11 +108,13 @@ class MySession extends StatelessWidget {
           bottomSheet: viewModel.loadingError is String
               ? Container(
                   width: double.infinity,
+                  height: 60,
                   padding: const EdgeInsets.symmetric(
                     vertical: 3,
                     horizontal: 2,
                   ),
-                  child: Expanded(
+                  child: Align(
+                    alignment: Alignment.center,
                     child: Text(
                       viewModel.loadingError.toString().substring(
                           viewModel.loadingError.toString().indexOf(' ') + 1),
